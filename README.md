@@ -1,14 +1,14 @@
-# OIBSIP
-
-## OASIS INFOBYTE Internship Program
-
-Web Development and Web Designing Tasks and Projects completed as part of the Oasis Infobyte Internship Program.
-
-## Repository Structure
-
-```text
 OIBSIP/
 └── Level-1/
-    └── Task-1-Landing-Page/
+    ├── Task-1-Landing-Page/
+    │   ├── index.html
+    │   └── README.md
+    ├── Task-2-Portfolio/
+    │   ├── index.html
+    │   ├── style.css
+    │   └── README.md
+    └── Task-3-Temperature-Converter/
         ├── index.html
+        ├── style.css
+        ├── script.js
         └── README.md
