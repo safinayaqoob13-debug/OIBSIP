@@ -1,911 +1,895 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VELORA BEAUTY | Oasis Infobyte Level 1 Task 1</title>
-    <!-- Tailwind CSS CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Google Fonts: Playfair Display for luxury serif & Inter for clean UI -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
-    <!-- FontAwesome Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        warmgold: {
-                            50: '#fdfbf7',
-                            100: '#f7f1e5',
-                            200: '#eddcc4',
-                            300: '#dfc097',
-                            DEFAULT: '#c59b63',
-                            dark: '#9a7238'
-                        },
-                        ivory: {
-                            DEFAULT: '#faf8f5',
-                            dark: '#f1ece4'
-                        },
-                        charcoal: '#231f1d',
-                        softgray: '#6b635c'
-                    },
-                    fontFamily: {
-                        serif: ['"Playfair Display"', 'serif'],
-                        sans: ['"Inter"', 'sans-serif']
-                    }
-                }
-            }
-        }
-    </script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VELORA BEAUTY — Luxury Skincare & Cosmetics</title>
+  
+  <!-- Google Fonts: Cormorant Garamond (Editorial Serif) & Alex Brush (Script Accent) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
 
-    <style>
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: #faf8f5;
-            color: #231f1d;
-            overflow-x: hidden;
-        }
+  <style>
+    /* ==========================================================================
+       VELORA BEAUTY — Premium Luxury Embedded Stylesheet
+       Color Palette: Soft Ivory, Warm Sand, Blush Pink, Rose Gold, Deep Charcoal
+       ========================================================================== */
 
-        h1, h2, h3, h4, .font-serif {
-            font-family: 'Playfair Display', serif;
-        }
+    /* CSS Variables */
+    :root {
+      --bg-primary: #F7F4EF;        /* Ivory / Cream Background */
+      --bg-card: #FFFFFF;           /* Soft White */
+      --bg-secondary: #EFE8E1;      /* Warm Soft Neutral */
+      --color-text: #2D2A29;        /* Deep Charcoal Luxury Body Text */
+      --color-muted: #6B6562;       /* Soft Muted Taupe */
+      --color-rose-gold: #C29B85;   /* Rose Gold / Gold Accent */
+      --color-rose-hover: #A8816B;  /* Deeper Rose Gold */
+      --color-blush: #F4EAE6;       /* Soft Blush Pink */
 
-        .card-shadow {
-            box-shadow: 0 10px 30px -5px rgba(197, 155, 99, 0.12);
-            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
-        }
+      /* Typography */
+      --font-heading: 'Cormorant Garamond', Georgia, serif;
+      --font-script: 'Alex Brush', cursive;
+      --font-body: 'Montserrat', sans-serif;
 
-        .card-shadow:hover {
-            box-shadow: 0 20px 40px -10px rgba(197, 155, 99, 0.22);
-            transform: translateY(-5px);
-        }
+      /* Layout & Shadows */
+      --transition: all 0.35s cubic-bezier(0.25, 1, 0.5, 1);
+      --shadow-subtle: 0 10px 30px rgba(45, 42, 41, 0.04);
+      --shadow-hover: 0 15px 35px rgba(45, 42, 41, 0.09);
+    }
 
-        .btn-gold {
-            background-color: #c59b63;
-            color: #ffffff;
-            transition: all 0.3s ease;
-        }
+    /* Reset & Base Setup */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
-        .btn-gold:hover {
-            background-color: #9a7238;
-            box-shadow: 0 4px 15px rgba(197, 155, 99, 0.3);
-        }
+    html {
+      scroll-behavior: smooth;
+      font-size: 16px;
+    }
 
-        .btn-outline-gold {
-            border: 1px solid #c59b63;
-            color: #c59b63;
-            transition: all 0.3s ease;
-        }
+    body {
+      background-color: var(--bg-primary);
+      color: var(--color-text);
+      font-family: var(--font-body);
+      line-height: 1.6;
+      font-weight: 400;
+      -webkit-font-smoothing: antialiased;
+    }
 
-        .btn-outline-gold:hover {
-            background-color: #c59b63;
-            color: #ffffff;
-        }
+    a {
+      text-decoration: none;
+      color: inherit;
+      transition: var(--transition);
+    }
 
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(15px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
+    img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+    }
 
-        .animate-fade-in {
-            animation: fadeIn 1s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
-        }
+    .container {
+      width: 90%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 15px;
+    }
 
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-        ::-webkit-scrollbar-track {
-            background: #faf8f5;
-        }
-        ::-webkit-scrollbar-thumb {
-            background: #eddcc4;
-            border-radius: 4px;
-        }
-        ::-webkit-scrollbar-thumb:hover {
-            background: #c59b63;
-        }
-    </style>
+    .text-center {
+      text-align: center;
+    }
+
+    /* Typography Hierarchy */
+    h1, h2, h3, h4 {
+      font-family: var(--font-heading);
+      font-weight: 400;
+      letter-spacing: 0.5px;
+    }
+
+    .script-subtitle {
+      font-family: var(--font-script);
+      font-size: 2.2rem;
+      color: var(--color-rose-gold);
+      display: block;
+      line-height: 1;
+      margin-bottom: 5px;
+    }
+
+    .script-subtitle.light {
+      color: #E2C8B8;
+    }
+
+    .section-title {
+      font-size: 2.8rem;
+      line-height: 1.15;
+      color: var(--color-text);
+      margin-bottom: 15px;
+    }
+
+    .section-lead {
+      font-size: 1rem;
+      color: var(--color-muted);
+      max-width: 650px;
+      margin: 0 auto 40px auto;
+      font-weight: 300;
+    }
+
+    /* Buttons Styling */
+    .btn {
+      display: inline-block;
+      padding: 14px 34px;
+      font-family: var(--font-body);
+      font-size: 0.82rem;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-weight: 500;
+      border: 1px solid transparent;
+      transition: var(--transition);
+      cursor: pointer;
+    }
+
+    .btn-primary {
+      background-color: var(--color-text);
+      color: #FFFFFF;
+    }
+
+    .btn-primary:hover {
+      background-color: var(--color-rose-gold);
+      color: #FFFFFF;
+    }
+
+    .btn-secondary {
+      border-color: var(--color-text);
+      color: var(--color-text);
+      margin-left: 10px;
+    }
+
+    .btn-secondary:hover {
+      background-color: var(--color-text);
+      color: #FFFFFF;
+    }
+
+    .btn-gold {
+      background-color: var(--color-rose-gold);
+      color: #FFFFFF;
+      border-radius: 0;
+    }
+
+    .btn-gold:hover {
+      background-color: #FFFFFF;
+      color: var(--color-text);
+    }
+
+    /* ==========================================================================
+       Header & Navigation
+       ========================================================================== */
+    .navbar {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background-color: rgba(247, 244, 239, 0.95);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid rgba(194, 155, 133, 0.15);
+      padding: 20px 0;
+    }
+
+    .nav-container {
+      width: 90%;
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .brand-logo {
+      font-family: var(--font-heading);
+      font-size: 2.2rem;
+      font-weight: 500;
+      letter-spacing: 4px;
+      color: var(--color-text);
+    }
+
+    .brand-logo span {
+      font-size: 0.9rem;
+      vertical-align: super;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 35px;
+    }
+
+    .nav-links a {
+      font-size: 0.82rem;
+      text-transform: uppercase;
+      letter-spacing: 1.8px;
+      color: var(--color-text);
+      font-weight: 400;
+      position: relative;
+      padding-bottom: 4px;
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      width: 0%;
+      height: 1px;
+      bottom: 0;
+      left: 0;
+      background-color: var(--color-rose-gold);
+      transition: var(--transition);
+    }
+
+    .nav-links a:hover::after,
+    .nav-links a.active::after {
+      width: 100%;
+    }
+
+    .cart-btn {
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: var(--color-rose-gold);
+      border: 1px solid var(--color-rose-gold);
+      padding: 8px 18px;
+    }
+
+    .cart-btn:hover {
+      background-color: var(--color-rose-gold);
+      color: #FFFFFF;
+    }
+
+    /* ==========================================================================
+       Hero Section
+       ========================================================================== */
+    .hero-section {
+      padding: 60px 0 90px 0;
+      overflow: hidden;
+    }
+
+    .hero-container {
+      width: 90%;
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 50px;
+      align-items: center;
+    }
+
+    .hero-title {
+      font-size: 4rem;
+      line-height: 1.05;
+      margin-bottom: 20px;
+      color: var(--color-text);
+    }
+
+    .script-headline {
+      font-family: var(--font-script);
+      font-size: 4.8rem;
+      color: var(--color-rose-gold);
+      font-weight: 400;
+      display: inline-block;
+      margin-left: 5px;
+    }
+
+    .hero-description {
+      font-size: 0.95rem;
+      color: var(--color-muted);
+      margin-bottom: 35px;
+      max-width: 480px;
+      font-weight: 300;
+    }
+
+    .hero-image-wrapper {
+      position: relative;
+    }
+
+    .hero-img {
+      width: 100%;
+      height: 520px;
+      object-fit: cover;
+      border-radius: 4px;
+      box-shadow: var(--shadow-subtle);
+    }
+
+    /* ==========================================================================
+       Philosophy & Features
+       ========================================================================== */
+    .philosophy-section {
+      padding: 90px 0;
+      background-color: var(--bg-card);
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 30px;
+      margin-top: 50px;
+    }
+
+    .feature-item {
+      padding: 30px;
+      background-color: var(--bg-primary);
+      border: 1px solid var(--bg-secondary);
+      transition: var(--transition);
+    }
+
+    .feature-item:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-subtle);
+    }
+
+    .feature-icon {
+      font-size: 2rem;
+      margin-bottom: 15px;
+    }
+
+    .feature-item h3 {
+      font-size: 1.4rem;
+      margin-bottom: 10px;
+    }
+
+    .feature-item p {
+      font-size: 0.88rem;
+      color: var(--color-muted);
+      font-weight: 300;
+    }
+
+    /* ==========================================================================
+       Visual Banner
+       ========================================================================== */
+    .visual-banner {
+      padding: 0;
+      margin: 40px 0;
+    }
+
+    .visual-container {
+      width: 90%;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .banner-img {
+      width: 100%;
+      height: 420px;
+      object-fit: cover;
+      border-radius: 4px;
+    }
+
+    /* ==========================================================================
+       Products Grid
+       ========================================================================== */
+    .products-section {
+      padding: 90px 0;
+    }
+
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 25px;
+      margin-top: 40px;
+    }
+
+    .product-card {
+      background-color: var(--bg-card);
+      border: 1px solid #EAE3DC;
+      position: relative;
+      transition: var(--transition);
+    }
+
+    .product-card:hover {
+      transform: translateY(-8px);
+      box-shadow: var(--shadow-hover);
+    }
+
+    .product-badge {
+      position: absolute;
+      top: 15px;
+      left: 15px;
+      background-color: var(--color-text);
+      color: #FFFFFF;
+      font-size: 0.68rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      padding: 4px 10px;
+      z-index: 2;
+    }
+
+    .product-img-box {
+      width: 100%;
+      height: 280px;
+      overflow: hidden;
+      background-color: #FBF8F5;
+    }
+
+    .product-img-box img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: var(--transition);
+    }
+
+    .product-card:hover .product-img-box img {
+      transform: scale(1.05);
+    }
+
+    .product-details {
+      padding: 22px 18px;
+      text-align: center;
+    }
+
+    .product-category {
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: var(--color-rose-gold);
+      display: block;
+      margin-bottom: 6px;
+    }
+
+    .product-title {
+      font-size: 1.25rem;
+      margin-bottom: 8px;
+      color: var(--color-text);
+    }
+
+    .product-price {
+      font-size: 0.95rem;
+      font-weight: 500;
+      color: var(--color-muted);
+      margin-bottom: 18px;
+    }
+
+    .btn-card {
+      display: block;
+      width: 100%;
+      padding: 10px 0;
+      border: 1px solid var(--color-text);
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: var(--color-text);
+      transition: var(--transition);
+    }
+
+    .product-card:hover .btn-card {
+      background-color: var(--color-text);
+      color: #FFFFFF;
+    }
+
+    /* ==========================================================================
+       Promotional Banner
+       ========================================================================== */
+    .promo-banner {
+      background-color: var(--color-text);
+      color: #FFFFFF;
+      padding: 80px 20px;
+      margin: 40px 0;
+    }
+
+    .promo-content h2 {
+      font-size: 3rem;
+      margin-bottom: 12px;
+    }
+
+    .promo-content p {
+      font-size: 0.95rem;
+      color: #D3CAC4;
+      margin-bottom: 25px;
+      font-weight: 300;
+    }
+
+    /* ==========================================================================
+       About Section
+       ========================================================================== */
+    .about-section {
+      padding: 90px 0;
+      background-color: var(--bg-card);
+    }
+
+    .grid-2-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+    }
+
+    .about-image-wrapper img {
+      width: 100%;
+      height: 480px;
+      object-fit: cover;
+      border-radius: 4px;
+    }
+
+    .about-text-content p {
+      color: var(--color-muted);
+      font-size: 0.92rem;
+      margin-bottom: 18px;
+      font-weight: 300;
+    }
+
+    .signature-block {
+      margin-top: 30px;
+      border-top: 1px solid var(--bg-secondary);
+      padding-top: 20px;
+    }
+
+    .signature-text {
+      font-family: var(--font-script);
+      font-size: 2.2rem;
+      color: var(--color-rose-gold);
+    }
+
+    /* ==========================================================================
+       Footer
+       ========================================================================== */
+    .footer {
+      background-color: #1E1C1B;
+      color: #D3CAC4;
+      padding: 70px 0 40px 0;
+      border-top: 1px solid #2B2827;
+    }
+
+    .footer-container {
+      width: 90%;
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1.5fr;
+      gap: 40px;
+    }
+
+    .footer-logo {
+      font-family: var(--font-heading);
+      font-size: 2rem;
+      letter-spacing: 3px;
+      color: #FFFFFF;
+      display: inline-block;
+      margin-bottom: 15px;
+    }
+
+    .footer-logo span {
+      font-size: 0.8rem;
+      vertical-align: super;
+    }
+
+    .footer-col p {
+      font-size: 0.85rem;
+      font-weight: 300;
+      line-height: 1.7;
+    }
+
+    .copyright {
+      margin-top: 25px;
+      font-size: 0.75rem;
+      color: #8C847E;
+    }
+
+    .footer-col h4 {
+      font-family: var(--font-body);
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 1.8px;
+      color: #FFFFFF;
+      margin-bottom: 20px;
+    }
+
+    .footer-col ul {
+      list-style: none;
+    }
+
+    .footer-col ul li {
+      margin-bottom: 10px;
+    }
+
+    .footer-col ul li a {
+      font-size: 0.85rem;
+      color: #D3CAC4;
+      font-weight: 300;
+    }
+
+    .footer-col ul li a:hover {
+      color: var(--color-rose-gold);
+    }
+
+    .social-links {
+      margin-top: 15px;
+      font-size: 0.85rem;
+    }
+
+    .social-links a {
+      color: var(--color-rose-gold);
+    }
+
+    .social-links a:hover {
+      color: #FFFFFF;
+    }
+
+    /* ==========================================================================
+       Responsive Media Queries
+       ========================================================================== */
+    @media (max-width: 1024px) {
+      .products-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .hero-title {
+        font-size: 3.2rem;
+      }
+      .footer-container {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .nav-container {
+        flex-direction: column;
+        gap: 15px;
+      }
+      .nav-links {
+        gap: 18px;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+      .hero-container,
+      .grid-2-col {
+        grid-template-columns: 1fr;
+        gap: 35px;
+      }
+      .hero-text-content {
+        text-align: center;
+      }
+      .hero-description {
+        margin: 0 auto 30px auto;
+      }
+      .features-grid {
+        grid-template-columns: 1fr;
+      }
+      .section-title {
+        font-size: 2.2rem;
+      }
+      .hero-title {
+        font-size: 2.8rem;
+      }
+      .script-headline {
+        font-size: 3.5rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .products-grid {
+        grid-template-columns: 1fr;
+      }
+      .footer-container {
+        grid-template-columns: 1fr;
+      }
+      .btn-secondary {
+        margin-left: 0;
+        margin-top: 10px;
+      }
+    }
+  </style>
 </head>
-<body class="bg-ivory text-charcoal antialiased selection:bg-warmgold-200 selection:text-warmgold-dark">
+<body>
 
-    <!-- Top Announcement Bar -->
-    <div class="bg-warmgold-100 text-warmgold-dark text-xs sm:text-sm py-2 px-4 text-center font-medium tracking-wide">
-        ✨ Complimentary shipping on all orders over $50 | Oasis Infobyte Level 1 Task 1 Landing Page
+  <!-- Sticky Navigation Header -->
+  <header class="navbar">
+    <div class="nav-container">
+      <a href="#home" class="brand-logo">VELORA<span>®</span></a>
+      <nav class="nav-links">
+        <a href="#home" class="active">Home</a>
+        <a href="#products">Products</a>
+        <a href="#about">About</a>
+        <a href="#skincare">Skincare</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <div class="nav-actions">
+        <a href="#products" class="cart-btn">Cart (0)</a>
+      </div>
     </div>
+  </header>
 
-    <!-- Sticky Navigation Bar -->
-    <header class="sticky top-0 z-50 bg-ivory/90 backdrop-blur-md border-b border-warmgold-200 transition-all duration-300">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
-            <!-- Brand Logo -->
-            <a href="#home" class="flex items-center space-x-2 group">
-                <span class="text-2xl sm:text-3xl font-serif font-bold tracking-wider text-charcoal group-hover:text-warmgold transition-colors">
-                    VELORA <span class="font-light italic text-warmgold">Beauty</span>
-                </span>
-            </a>
-
-            <!-- Desktop Navigation Links -->
-            <nav class="hidden md:flex items-center space-x-8 text-sm font-medium tracking-wider uppercase">
-                <a href="#home" class="text-charcoal hover:text-warmgold transition-colors py-1 relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[2px] after:bg-warmgold hover:after:w-full after:transition-all">Home</a>
-                <a href="#products" class="text-charcoal hover:text-warmgold transition-colors py-1 relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[2px] after:bg-warmgold hover:after:w-full after:transition-all">Products</a>
-                <a href="#about" class="text-charcoal hover:text-warmgold transition-colors py-1 relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[2px] after:bg-warmgold hover:after:w-full after:transition-all">About</a>
-                <a href="#skincare" class="text-charcoal hover:text-warmgold transition-colors py-1 relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[2px] after:bg-warmgold hover:after:w-full after:transition-all">Skincare</a>
-                <a href="#contact" class="text-charcoal hover:text-warmgold transition-colors py-1 relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[2px] after:bg-warmgold hover:after:w-full after:transition-all">Contact</a>
-            </nav>
-
-            <!-- Action Icons -->
-            <div class="flex items-center space-x-5">
-                <button aria-label="Search" class="text-charcoal hover:text-warmgold transition-colors hidden sm:block">
-                    <i class="fa-solid fa-magnifying-glass text-lg"></i>
-                </button>
-                <button aria-label="Wishlist" class="text-charcoal hover:text-warmgold transition-colors relative hidden sm:block">
-                    <i class="fa-regular fa-heart text-lg"></i>
-                    <span class="absolute -top-1 -right-2 bg-warmgold text-white text-[10px] w-4 h-4 rounded-full flex items-center justify-center">2</span>
-                </button>
-                <button aria-label="Shopping Bag" class="text-charcoal hover:text-warmgold transition-colors relative">
-                    <i class="fa-solid fa-bag-shopping text-lg"></i>
-                    <span class="absolute -top-1 -right-2 bg-warmgold text-white text-[10px] w-4 h-4 rounded-full flex items-center justify-center">4</span>
-                </button>
-                <!-- Mobile menu toggle button -->
-                <button id="menu-btn" aria-label="Toggle Menu" class="md:hidden text-charcoal hover:text-warmgold focus:outline-none">
-                    <i class="fa-solid fa-bars text-2xl"></i>
-                </button>
-            </div>
-        </div>
-
-        <!-- Mobile Menu Dropdown -->
-        <div id="mobile-menu" class="hidden md:hidden bg-ivory border-b border-warmgold-200 px-6 py-4 space-y-3 animate-fade-in">
-            <a href="#home" class="block text-sm uppercase tracking-wider text-charcoal hover:text-warmgold py-2">Home</a>
-            <a href="#products" class="block text-sm uppercase tracking-wider text-charcoal hover:text-warmgold py-2">Products</a>
-            <a href="#about" class="block text-sm uppercase tracking-wider text-charcoal hover:text-warmgold py-2">About</a>
-            <a href="#skincare" class="block text-sm uppercase tracking-wider text-charcoal hover:text-warmgold py-2">Skincare</a>
-            <a href="#contact" class="block text-sm uppercase tracking-wider text-charcoal hover:text-warmgold py-2">Contact</a>
-        </div>
-    </header>
-
+  <main>
     <!-- Hero Section -->
-    <section id="home" class="relative bg-gradient-to-br from-warmgold-50 via-warmgold-100/50 to-ivory py-16 md:py-28 overflow-hidden">
-        <div class="absolute -top-24 -right-24 w-96 h-96 rounded-full bg-warmgold-200/40 blur-3xl pointer-events-none"></div>
-        <div class="absolute -bottom-24 -left-24 w-96 h-96 rounded-full bg-warmgold-300/30 blur-3xl pointer-events-none"></div>
-
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
-                
-                <!-- Left Text Column -->
-                <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
-                    <div class="inline-flex items-center space-x-2 bg-warmgold-200/60 px-4 py-1.5 rounded-full text-warmgold-dark text-xs sm:text-sm font-medium tracking-widest uppercase">
-                        <i class="fa-solid fa-sparkles text-warmgold"></i>
-                        <span>Pure Botanical Luxury</span>
-                    </div>
-                    
-                    <h1 class="text-4xl sm:text-6xl lg:text-7xl font-serif font-bold text-charcoal leading-tight">
-                        Your Beauty, <br>
-                        <span class="italic font-normal text-warmgold">Your Glow.</span>
-                    </h1>
-                    
-                    <p class="text-softgray text-base sm:text-lg max-w-xl mx-auto lg:mx-0 font-light leading-relaxed">
-                        Elevate your daily ritual with Velora Beauty. Experience clean, cruelty-free skincare infused with potent botanicals and dermatological science designed to awaken your skin's natural radiance.
-                    </p>
-
-                    <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start space-y-4 sm:space-y-0 sm:space-x-4 pt-4">
-                        <a href="#products" class="w-full sm:w-auto px-8 py-4 rounded-full btn-gold font-medium text-sm tracking-widest uppercase shadow-md text-center">
-                            Shop Collection
-                        </a>
-                        <a href="#about" class="w-full sm:w-auto px-8 py-4 rounded-full btn-outline-gold font-medium text-sm tracking-widest uppercase text-center">
-                            Our Philosophy
-                        </a>
-                    </div>
-
-                    <!-- Trust indicators -->
-                    <div class="pt-8 border-t border-warmgold-200/60 grid grid-cols-3 gap-4 max-w-lg mx-auto lg:mx-0 text-center lg:text-left">
-                        <div>
-                            <p class="font-serif text-2xl font-bold text-charcoal">100%</p>
-                            <p class="text-xs text-softgray uppercase tracking-wider">Cruelty Free</p>
-                        </div>
-                        <div>
-                            <p class="font-serif text-2xl font-bold text-charcoal">Clean</p>
-                            <p class="text-xs text-softgray uppercase tracking-wider">Ingredients</p>
-                        </div>
-                        <div>
-                            <p class="font-serif text-2xl font-bold text-charcoal">Dermatologist</p>
-                            <p class="text-xs text-softgray uppercase tracking-wider">Approved</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Right Image Column (Using the flagship boutique aesthetic from uploaded photo) -->
-                <div class="lg:col-span-5 relative flex justify-center">
-                    <div class="relative w-full max-w-md">
-                        <div class="absolute inset-0 bg-gradient-to-tr from-warmgold-300 to-warmgold-100 rounded-3xl transform rotate-3 scale-105 opacity-70"></div>
-                        
-                        <img src="https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&q=80&w=800" 
-                             alt="Velora Flagship Boutique Interior" 
-                             class="relative z-10 rounded-3xl shadow-xl w-full h-[450px] sm:h-[500px] object-cover"
-                             onerror="this.src='https://placehold.co/600x800/eddcc4/9a7238?text=Velora+Boutique+Lounge';">
-                        
-                        <!-- Floating Badge Card -->
-                        <div class="absolute -bottom-6 -left-6 z-20 bg-white/90 backdrop-blur-md p-4 rounded-2xl shadow-lg border border-warmgold-200 hidden sm:flex items-center space-x-3">
-                            <div class="w-12 h-12 rounded-full bg-warmgold-100 flex items-center justify-center text-warmgold">
-                                <i class="fa-solid fa-award text-xl"></i>
-                            </div>
-                            <div>
-                                <p class="text-xs text-softgray uppercase font-medium">Flagship Lounge</p>
-                                <p class="text-sm font-serif font-bold text-charcoal">Beverly Hills, CA</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
+    <section id="home" class="hero-section">
+      <div class="hero-container">
+        <div class="hero-text-content">
+          <span class="script-subtitle">Discover The</span>
+          <h1 class="hero-title">Beauty Within <span class="script-headline">You</span></h1>
+          <p class="hero-description">
+            Formulated with botanical precision and pure organic essences. Nourish your skin with ultra-hydrating serums, rose elixirs, and age-defying daily rituals.
+          </p>
+          <div class="hero-cta-group">
+            <a href="#products" class="btn btn-primary">Shop Collection</a>
+            <a href="#about" class="btn btn-secondary">Learn More</a>
+          </div>
         </div>
+        <div class="hero-image-wrapper">
+          <img src="https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?q=80&w=1200&auto=format&fit=crop" alt="Woman applying glowing luxury skincare cream" class="hero-img">
+        </div>
+      </div>
+    </section>
+
+    <!-- Philosophy & Organic Badge Section -->
+    <section id="skincare" class="philosophy-section">
+      <div class="container text-center">
+        <span class="script-subtitle">Natural & Certified Organic</span>
+        <h2 class="section-title">Skincare That Speaks Pure Elegance</h2>
+        <p class="section-lead">
+          Every drop of Velora Beauty is crafted without harmful parabens, artificial fragrances, or harsh chemicals. Experience pure, gentle formulations suited for all skin tones.
+        </p>
+        
+        <div class="features-grid">
+          <div class="feature-item">
+            <div class="feature-icon">🌿</div>
+            <h3>100% Organic Ingredients</h3>
+            <p>Directly harvested from sustainable botanical reserves to maintain potency.</p>
+          </div>
+          <div class="feature-item">
+            <div class="feature-icon">✨</div>
+            <h3>Dermatologist Tested</h3>
+            <p>Rigourously formulated for ultra-sensitive and high-moisture retention.</p>
+          </div>
+          <div class="feature-item">
+            <div class="feature-icon">🌸</div>
+            <h3>Cruelty-Free & Vegan</h3>
+            <p>Ethical beauty created with love and compassion for our planet.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Visual Showcase / Banner -->
+    <section class="visual-banner">
+      <div class="visual-container">
+        <img src="https://images.unsplash.com/photo-1598440947619-2c35fc9aa908?q=80&w=1200&auto=format&fit=crop" alt="Velora Skincare Application Ritual" class="banner-img">
+      </div>
     </section>
 
     <!-- Featured Products Section -->
-    <section id="products" class="py-20 md:py-28 bg-ivory">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            
-            <div class="text-center max-w-2xl mx-auto mb-16 space-y-4">
-                <span class="text-warmgold text-xs sm:text-sm font-semibold tracking-widest uppercase">Curated For Your Skin</span>
-                <h2 class="text-3xl sm:text-5xl font-serif font-bold text-charcoal">Featured Bestsellers</h2>
-                <p class="text-softgray font-light text-sm sm:text-base">
-                    Discover our award-winning formulations engineered with active botanical extracts to nourish, hydrate, and illuminate your complexion.
-                </p>
-            </div>
-
-            <!-- Product Grid -->
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-                
-                <!-- Product Card 1 -->
-                <div class="bg-white rounded-2xl overflow-hidden card-shadow border border-warmgold-100 flex flex-col justify-between group">
-                    <div class="relative overflow-hidden bg-warmgold-50 h-72">
-                        <span class="absolute top-3 left-3 z-10 bg-warmgold text-white text-[10px] font-semibold uppercase px-2.5 py-1 rounded-full tracking-wider">Bestseller</span>
-                        <img src="https://images.unsplash.com/photo-1620916566398-39f1143ab7be?auto=format&fit=crop&q=80&w=600" 
-                             alt="Vitamin C Radiance Serum" 
-                             class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                             onerror="this.src='https://placehold.co/500x500/f7f1e5/c59b63?text=Vitamin+C+Serum';">
-                        <button aria-label="Quick Add to Wishlist" class="absolute top-3 right-3 w-9 h-9 rounded-full bg-white/80 backdrop-blur-sm flex items-center justify-center text-charcoal hover:text-warmgold transition-colors">
-                            <i class="fa-regular fa-heart"></i>
-                        </button>
-                    </div>
-                    <div class="p-6 flex flex-col flex-grow justify-between space-y-4">
-                        <div>
-                            <div class="flex items-center space-x-1 text-amber-400 text-xs mb-1">
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                                <span class="text-softgray ml-1 font-sans">(142)</span>
-                            </div>
-                            <h3 class="font-serif font-semibold text-lg text-charcoal group-hover:text-warmgold transition-colors">Vitamin C Radiance Serum</h3>
-                            <p class="text-xs text-softgray mt-1 line-clamp-2">Brightens hyperpigmentation and restores a youthful, luminous glow.</p>
-                        </div>
-                        <div class="flex items-center justify-between pt-4 border-t border-warmgold-100">
-                            <span class="font-serif font-bold text-lg text-charcoal">$42.00</span>
-                            <button onclick="openModal('Vitamin C Radiance Serum', '$42.00')" class="px-4 py-2 rounded-full btn-gold text-xs font-semibold uppercase tracking-wider">
-                                Add to Bag
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Product Card 2 -->
-                <div class="bg-white rounded-2xl overflow-hidden card-shadow border border-warmgold-100 flex flex-col justify-between group">
-                    <div class="relative overflow-hidden bg-warmgold-50 h-72">
-                        <span class="absolute top-3 left-3 z-10 bg-charcoal text-white text-[10px] font-semibold uppercase px-2.5 py-1 rounded-full tracking-wider">Essential</span>
-                        <img src="https://images.unsplash.com/photo-1598440947619-2c35fc9aa908?auto=format&fit=crop&q=80&w=600" 
-                             alt="Hydrating Daily Moisturizer" 
-                             class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                             onerror="this.src='https://placehold.co/500x500/f7f1e5/c59b63?text=Daily+Moisturizer';">
-                        <button aria-label="Quick Add to Wishlist" class="absolute top-3 right-3 w-9 h-9 rounded-full bg-white/80 backdrop-blur-sm flex items-center justify-center text-charcoal hover:text-warmgold transition-colors">
-                            <i class="fa-regular fa-heart"></i>
-                        </button>
-                    </div>
-                    <div class="p-6 flex flex-col flex-grow justify-between space-y-4">
-                        <div>
-                            <div class="flex items-center space-x-1 text-amber-400 text-xs mb-1">
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star-half-stroke"></i>
-                                <span class="text-softgray ml-1 font-sans">(98)</span>
-                            </div>
-                            <h3 class="font-serif font-semibold text-lg text-charcoal group-hover:text-warmgold transition-colors">Hydrating Daily Moisturizer</h3>
-                            <p class="text-xs text-softgray mt-1 line-clamp-2">Deeply locks in moisture with hyaluronic acid and soothing ceramides.</p>
-                        </div>
-                        <div class="flex items-center justify-between pt-4 border-t border-warmgold-100">
-                            <span class="font-serif font-bold text-lg text-charcoal">$35.00</span>
-                            <button onclick="openModal('Hydrating Daily Moisturizer', '$35.00')" class="px-4 py-2 rounded-full btn-gold text-xs font-semibold uppercase tracking-wider">
-                                Add to Bag
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Product Card 3 -->
-                <div class="bg-white rounded-2xl overflow-hidden card-shadow border border-warmgold-100 flex flex-col justify-between group">
-                    <div class="relative overflow-hidden bg-warmgold-50 h-72">
-                        <span class="absolute top-3 left-3 z-10 bg-warmgold text-white text-[10px] font-semibold uppercase px-2.5 py-1 rounded-full tracking-wider">Gentle Care</span>
-                        <img src="https://images.unsplash.com/photo-1556228720-195a672e8a03?auto=format&fit=crop&q=80&w=600" 
-                             alt="Gentle Botanical Cleanser" 
-                             class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                             onerror="this.src='https://placehold.co/500x500/f7f1e5/c59b63?text=Botanical+Cleanser';">
-                        <button aria-label="Quick Add to Wishlist" class="absolute top-3 right-3 w-9 h-9 rounded-full bg-white/80 backdrop-blur-sm flex items-center justify-center text-charcoal hover:text-warmgold transition-colors">
-                            <i class="fa-regular fa-heart"></i>
-                        </button>
-                    </div>
-                    <div class="p-6 flex flex-col flex-grow justify-between space-y-4">
-                        <div>
-                            <div class="flex items-center space-x-1 text-amber-400 text-xs mb-1">
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                                <span class="text-softgray ml-1 font-sans">(215)</span>
-                            </div>
-                            <h3 class="font-serif font-semibold text-lg text-charcoal group-hover:text-warmgold transition-colors">Gentle Botanical Cleanser</h3>
-                            <p class="text-xs text-softgray mt-1 line-clamp-2">Removes impurities and makeup without stripping natural skin barriers.</p>
-                        </div>
-                        <div class="flex items-center justify-between pt-4 border-t border-warmgold-100">
-                            <span class="font-serif font-bold text-lg text-charcoal">$28.00</span>
-                            <button onclick="openModal('Gentle Botanical Cleanser', '$28.00')" class="px-4 py-2 rounded-full btn-gold text-xs font-semibold uppercase tracking-wider">
-                                Add to Bag
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Product Card 4 -->
-                <div class="bg-white rounded-2xl overflow-hidden card-shadow border border-warmgold-100 flex flex-col justify-between group">
-                    <div class="relative overflow-hidden bg-warmgold-50 h-72">
-                        <span class="absolute top-3 left-3 z-10 bg-warmgold-dark text-white text-[10px] font-semibold uppercase px-2.5 py-1 rounded-full tracking-wider">New Formula</span>
-                        <img src="https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?auto=format&fit=crop&q=80&w=600" 
-                             alt="Gold-Glow Illuminating Cream" 
-                             class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                             onerror="this.src='https://placehold.co/500x500/f7f1e5/c59b63?text=Illuminating+Cream';">
-                        <button aria-label="Quick Add to Wishlist" class="absolute top-3 right-3 w-9 h-9 rounded-full bg-white/80 backdrop-blur-sm flex items-center justify-center text-charcoal hover:text-warmgold transition-colors">
-                            <i class="fa-regular fa-heart"></i>
-                        </button>
-                    </div>
-                    <div class="p-6 flex flex-col flex-grow justify-between space-y-4">
-                        <div>
-                            <div class="flex items-center space-x-1 text-amber-400 text-xs mb-1">
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                                <span class="text-softgray ml-1 font-sans">(76)</span>
-                            </div>
-                            <h3 class="font-serif font-semibold text-lg text-charcoal group-hover:text-warmgold transition-colors">Gold-Glow Illuminating Cream</h3>
-                            <p class="text-xs text-softgray mt-1 line-clamp-2">Infused with real botanical gold extracts and minerals for instant dewiness.</p>
-                        </div>
-                        <div class="flex items-center justify-between pt-4 border-t border-warmgold-100">
-                            <span class="font-serif font-bold text-lg text-charcoal">$48.00</span>
-                            <button onclick="openModal('Gold-Glow Illuminating Cream', '$48.00')" class="px-4 py-2 rounded-full btn-gold text-xs font-semibold uppercase tracking-wider">
-                                Add to Bag
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-
-            <!-- View All CTA -->
-            <div class="text-center mt-12">
-                <a href="#products" class="inline-block px-10 py-4 rounded-full btn-outline-gold font-medium text-xs tracking-widest uppercase">
-                    Explore Full Catalog
-                </a>
-            </div>
-
+    <section id="products" class="products-section">
+      <div class="container">
+        <div class="section-header text-center">
+          <span class="script-subtitle">Products</span>
+          <h2 class="section-title">Healthy Skin, Wildly You</h2>
         </div>
+
+        <div class="products-grid">
+          <!-- Product Card 1 -->
+          <div class="product-card">
+            <div class="product-badge">Best Seller</div>
+            <div class="product-img-box">
+              <img src="https://images.unsplash.com/photo-1620916566398-39f1143ab7be?q=80&w=800&auto=format&fit=crop" alt="Vitamin C Radiance Serum">
+            </div>
+            <div class="product-details">
+              <span class="product-category">Glow Elixir</span>
+              <h3 class="product-title">Vitamin C Radiance Serum</h3>
+              <p class="product-price">$48.00</p>
+              <a href="#contact" class="btn-card">Add to Cart</a>
+            </div>
+          </div>
+
+          <!-- Product Card 2 -->
+          <div class="product-card">
+            <div class="product-img-box">
+              <img src="https://images.unsplash.com/photo-1608248597260-244e45d9471f?q=80&w=800&auto=format&fit=crop" alt="Rose Gold Hydrating Cream">
+            </div>
+            <div class="product-details">
+              <span class="product-category">Moisturizer</span>
+              <h3 class="product-title">Rose-Glow Velvet Moisture Cream</h3>
+              <p class="product-price">$54.00</p>
+              <a href="#contact" class="btn-card">Add to Cart</a>
+            </div>
+          </div>
+
+          <!-- Product Card 3 -->
+          <div class="product-card">
+            <div class="product-badge">New Formula</div>
+            <div class="product-img-box">
+              <img src="https://images.unsplash.com/photo-1556228720-195a672e8a03?q=80&w=800&auto=format&fit=crop" alt="Gentle Botanical Cleanser">
+            </div>
+            <div class="product-details">
+              <span class="product-category">Daily Cleanse</span>
+              <h3 class="product-title">Gentle Botanical Face Cleanser</h3>
+              <p class="product-price">$36.00</p>
+              <a href="#contact" class="btn-card">Add to Cart</a>
+            </div>
+          </div>
+
+          <!-- Product Card 4 -->
+          <div class="product-card">
+            <div class="product-img-box">
+              <img src="https://images.unsplash.com/photo-1608248543803-ba4f8c70ae0b?q=80&w=800&auto=format&fit=crop" alt="Retinol & Peptide Complex Serum">
+            </div>
+            <div class="product-details">
+              <span class="product-category">Night Repair</span>
+              <h3 class="product-title">Retinol & Peptide Complex Serum</h3>
+              <p class="product-price">$62.00</p>
+              <a href="#contact" class="btn-card">Add to Cart</a>
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
 
-    <!-- Promotional Banner Section -->
-    <section class="py-20 bg-gradient-to-r from-warmgold-100 via-warmgold-50 to-ivory relative overflow-hidden border-y border-warmgold-200">
-        <div class="absolute inset-0 opacity-10 bg-[radial-gradient(#c59b63_1px,transparent_1px)] [background-size:16px_16px] pointer-events-none"></div>
-        
-        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10 space-y-6">
-            <span class="text-warmgold text-xs sm:text-sm font-semibold tracking-widest uppercase">Limited Edition Offer</span>
-            <h2 class="text-3xl sm:text-5xl font-serif font-bold text-charcoal">Discover Your Natural Glow</h2>
-            <p class="text-softgray text-base sm:text-lg max-w-2xl mx-auto font-light">
-                Experience the transformational power of pure botanical skincare. Receive a complimentary travel-size gold face mist with any order over $60.
-            </p>
-            <div class="pt-4">
-                <a href="#products" class="inline-block px-9 py-4 rounded-full btn-gold font-medium text-xs tracking-widest uppercase shadow-lg">
-                    Claim Your Gift Today
-                </a>
-            </div>
-        </div>
+    <!-- Promotional Callout Banner -->
+    <section class="promo-banner">
+      <div class="promo-content text-center">
+        <span class="script-subtitle light">Special Luxury Edition</span>
+        <h2>Discover Your Natural Glow</h2>
+        <p>Unlock 15% off your first botanical skincare order with code <strong>GLOW15</strong></p>
+        <a href="#products" class="btn btn-gold">Explore Glow Rituals</a>
+      </div>
     </section>
 
     <!-- About Section -->
-    <section id="about" class="py-20 md:py-28 bg-ivory">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
-                
-                <!-- Left Image Collage -->
-                <div class="lg:col-span-6 grid grid-cols-2 gap-4 relative">
-                    <div class="space-y-4">
-                        <img src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&q=80&w=600" 
-                             alt="Skincare Application" 
-                             class="rounded-2xl shadow-lg w-full h-64 object-cover"
-                             onerror="this.src='https://placehold.co/400x400/eddcc4/9a7238?text=Velora+Model';">
-                        <div class="bg-warmgold-100 p-6 rounded-2xl text-center flex flex-col justify-center items-center">
-                            <span class="font-serif text-3xl font-bold text-warmgold-dark">10+</span>
-                            <span class="text-xs text-softgray uppercase tracking-wider mt-1">Years of Botanical Expertise</span>
-                        </div>
-                    </div>
-                    <div class="space-y-4 pt-8">
-                        <div class="bg-charcoal text-white p-6 rounded-2xl text-center flex flex-col justify-center items-center">
-                            <span class="font-serif text-3xl font-bold text-warmgold-200">100%</span>
-                            <span class="text-xs text-warmgold-100 uppercase tracking-wider mt-1">Sustainable Packaging</span>
-                        </div>
-                        <img src="https://images.unsplash.com/photo-1512290900672-8a9d18b3e803?auto=format&fit=crop&q=80&w=600" 
-                             alt="Organic Ingredients" 
-                             class="rounded-2xl shadow-lg w-full h-64 object-cover"
-                             onerror="this.src='https://placehold.co/400x400/eddcc4/9a7238?text=Botanical+Ingredients';">
-                    </div>
-                </div>
-
-                <!-- Right Content Column -->
-                <div class="lg:col-span-6 space-y-6">
-                    <span class="text-warmgold text-xs sm:text-sm font-semibold tracking-widest uppercase">The Velora Philosophy</span>
-                    <h2 class="text-3xl sm:text-5xl font-serif font-bold text-charcoal leading-tight">
-                        Rooted in Quality, <br>Crafted for Everyday Beauty.
-                    </h2>
-                    <p class="text-softgray font-light text-base leading-relaxed">
-                        At Velora Beauty, we believe skincare should be an indulgent ritual rather than a chore. Founded with a commitment to uncompromising purity, our formulas blend hand-harvested botanicals with advanced green chemistry.
-                    </p>
-                    
-                    <div class="space-y-4 pt-2">
-                        <div class="flex items-start space-x-4">
-                            <div class="w-8 h-8 rounded-full bg-warmgold-100 flex items-center justify-center text-warmgold flex-shrink-0 mt-1">
-                                <i class="fa-solid fa-leaf text-sm"></i>
-                            </div>
-                            <div>
-                                <h4 class="font-serif font-semibold text-charcoal text-lg">Pure Botanical Ingredients</h4>
-                                <p class="text-xs text-softgray mt-0.5">Ethically sourced plant extracts free from parabens, sulfates, and synthetic fragrances.</p>
-                            </div>
-                        </div>
-
-                        <div class="flex items-start space-x-4">
-                            <div class="w-8 h-8 rounded-full bg-warmgold-100 flex items-center justify-center text-warmgold flex-shrink-0 mt-1">
-                                <i class="fa-solid fa-hand-holding-heart text-sm"></i>
-                            </div>
-                            <div>
-                                <h4 class="font-serif font-semibold text-charcoal text-lg">Gentle on Sensitive Skin</h4>
-                                <p class="text-xs text-softgray mt-0.5">Dermatologist-tested hypoallergenic formulations designed to nourish delicate skin barriers.</p>
-                            </div>
-                        </div>
-
-                        <div class="flex items-start space-x-4">
-                            <div class="w-8 h-8 rounded-full bg-warmgold-100 flex items-center justify-center text-warmgold flex-shrink-0 mt-1">
-                                <i class="fa-solid fa-globe text-sm"></i>
-                            </div>
-                            <div>
-                                <h4 class="font-serif font-semibold text-charcoal text-lg">Eco-Conscious Commitment</h4>
-                                <p class="text-xs text-softgray mt-0.5">Recyclable glass packaging and carbon-neutral fulfillment supporting environmental restoration.</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="pt-4">
-                        <a href="#contact" class="inline-block px-8 py-4 rounded-full btn-gold font-medium text-xs tracking-widest uppercase shadow-md">
-                            Get in Touch
-                        </a>
-                    </div>
-                </div>
-
-            </div>
+    <section id="about" class="about-section">
+      <div class="container grid-2-col">
+        <div class="about-image-wrapper">
+          <img src="https://images.unsplash.com/photo-1512290900673-70020121111d?q=80&w=1000&auto=format&fit=crop" alt="Botanical oil drop formulation">
         </div>
+        <div class="about-text-content">
+          <span class="script-subtitle">Our Heritage</span>
+          <h2 class="section-title">Created for Timeless Elegance & Daily Radiance</h2>
+          <p>
+            At <strong>VELORA BEAUTY</strong>, we believe skincare is an art form. Inspired by minimalist Parisian aesthetics and modern clean chemistry, our products are crafted to restore your skin's natural vitality.
+          </p>
+          <p>
+            Each formula features pure plant extractions, rose hydrosols, and skin-identical lipids designed to hydrate deeply without irritation.
+          </p>
+          <div class="signature-block">
+            <p class="signature-text">Velora Beauty Atelier</p>
+          </div>
+        </div>
+      </div>
     </section>
+  </main>
 
-    <!-- Skincare Routine Guide Section -->
-    <section id="skincare" class="py-20 bg-warmgold-50/50 border-t border-warmgold-200">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center max-w-2xl mx-auto mb-16 space-y-4">
-                <span class="text-warmgold text-xs sm:text-sm font-semibold tracking-widest uppercase">Expert Rituals</span>
-                <h2 class="text-3xl sm:text-5xl font-serif font-bold text-charcoal">Your 3-Step Daily Routine</h2>
-                <p class="text-softgray font-light text-sm sm:text-base">
-                    Achieve maximum radiance by following our dermatologist-recommended daily skincare regimen.
-                </p>
-            </div>
+  <!-- Footer Section -->
+  <footer id="contact" class="footer">
+    <div class="footer-container">
+      <div class="footer-col brand-col">
+        <a href="#home" class="footer-logo">VELORA<span>®</span></a>
+        <p>Empowering your skin’s natural journey through luxury organic formulations.</p>
+        <p class="copyright">© 2026 Velora Beauty Inc. All rights reserved.</p>
+      </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <!-- Step 1 -->
-                <div class="bg-white p-8 rounded-2xl card-shadow border border-warmgold-100 text-center space-y-4 relative">
-                    <span class="absolute top-4 right-4 text-3xl font-serif font-bold text-warmgold-200">01</span>
-                    <div class="w-16 h-16 mx-auto rounded-full bg-warmgold-100 flex items-center justify-center text-warmgold text-2xl">
-                        <i class="fa-solid fa-droplet"></i>
-                    </div>
-                    <h3 class="font-serif font-semibold text-xl text-charcoal">Cleanse & Purify</h3>
-                    <p class="text-softgray text-sm font-light">
-                        Start your morning and evening with our Gentle Botanical Cleanser to wash away impurities and prep skin for serums.
-                    </p>
-                </div>
+      <div class="footer-col">
+        <h4>Navigation</h4>
+        <ul>
+          <li><a href="#home">Home</a></li>
+          <li><a href="#products">Products</a></li>
+          <li><a href="#about">About Us</a></li>
+          <li><a href="#skincare">Skincare</a></li>
+        </ul>
+      </div>
 
-                <!-- Step 2 -->
-                <div class="bg-white p-8 rounded-2xl card-shadow border border-warmgold-100 text-center space-y-4 relative">
-                    <span class="absolute top-4 right-4 text-3xl font-serif font-bold text-warmgold-200">02</span>
-                    <div class="w-16 h-16 mx-auto rounded-full bg-warmgold-100 flex items-center justify-center text-warmgold text-2xl">
-                        <i class="fa-solid fa-wand-magic-sparkles"></i>
-                    </div>
-                    <h3 class="font-serif font-semibold text-xl text-charcoal">Nourish & Treat</h3>
-                    <p class="text-softgray text-sm font-light">
-                        Apply 3-4 drops of Vitamin C Radiance Serum to target dark spots, boost collagen, and enhance luminosity.
-                    </p>
-                </div>
+      <div class="footer-col">
+        <h4>Customer Care</h4>
+        <ul>
+          <li><a href="#">Shipping & Returns</a></li>
+          <li><a href="#">Track Order</a></li>
+          <li><a href="#">Ingredient Index</a></li>
+          <li><a href="#">Privacy Policy</a></li>
+        </ul>
+      </div>
 
-                <!-- Step 3 -->
-                <div class="bg-white p-8 rounded-2xl card-shadow border border-warmgold-100 text-center space-y-4 relative">
-                    <span class="absolute top-4 right-4 text-3xl font-serif font-bold text-warmgold-200">03</span>
-                    <div class="w-16 h-16 mx-auto rounded-full bg-warmgold-100 flex items-center justify-center text-warmgold text-2xl">
-                        <i class="fa-solid fa-shield-heart"></i>
-                    </div>
-                    <h3 class="font-serif font-semibold text-xl text-charcoal">Lock & Protect</h3>
-                    <p class="text-softgray text-sm font-light">
-                        Seal in all active nutrients with our Hydrating Daily Moisturizer or Gold Cream for all-day hydration.
-                    </p>
-                </div>
-            </div>
+      <div class="footer-col">
+        <h4>Connect & Location</h4>
+        <p>Email: care@velorabeauty.com</p>
+        <p>Phone: +1 (800) 555-VELORA</p>
+        <div class="social-links">
+          <a href="#" aria-label="Instagram">Instagram</a> • 
+          <a href="#" aria-label="Pinterest">Pinterest</a> • 
+          <a href="#" aria-label="LinkedIn">LinkedIn</a>
         </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section id="contact" class="py-20 md:py-28 bg-ivory">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
-                
-                <!-- Left Contact Info -->
-                <div class="lg:col-span-5 space-y-6">
-                    <span class="text-warmgold text-xs sm:text-sm font-semibold tracking-widest uppercase">Get In Touch</span>
-                    <h2 class="text-3xl sm:text-5xl font-serif font-bold text-charcoal">We'd Love to Hear From You</h2>
-                    <p class="text-softgray font-light text-sm sm:text-base">
-                        Have questions about your skin type or need help selecting the perfect routine? Our beauty advisors are here to assist you.
-                    </p>
-
-                    <div class="space-y-4 pt-4">
-                        <div class="flex items-center space-x-4">
-                            <div class="w-12 h-12 rounded-full bg-warmgold-100 flex items-center justify-center text-warmgold flex-shrink-0">
-                                <i class="fa-solid fa-location-dot"></i>
-                            </div>
-                            <div>
-                                <h4 class="font-serif font-semibold text-charcoal">Flagship Boutique</h4>
-                                <p class="text-xs text-softgray">450 Rosewood Avenue, Beverly Hills, CA</p>
-                            </div>
-                        </div>
-
-                        <div class="flex items-center space-x-4">
-                            <div class="w-12 h-12 rounded-full bg-warmgold-100 flex items-center justify-center text-warmgold flex-shrink-0">
-                                <i class="fa-solid fa-envelope"></i>
-                            </div>
-                            <div>
-                                <h4 class="font-serif font-semibold text-charcoal">Email Support</h4>
-                                <p class="text-xs text-softgray">concierge@velorabeauty.com</p>
-                            </div>
-                        </div>
-
-                        <div class="flex items-center space-x-4">
-                            <div class="w-12 h-12 rounded-full bg-warmgold-100 flex items-center justify-center text-warmgold flex-shrink-0">
-                                <i class="fa-solid fa-phone"></i>
-                            </div>
-                            <div>
-                                <h4 class="font-serif font-semibold text-charcoal">Client Services</h4>
-                                <p class="text-xs text-softgray">+1 (800) 555-VELORA</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Right Contact Form -->
-                <div class="lg:col-span-7 bg-white p-8 sm:p-10 rounded-3xl card-shadow border border-warmgold-100">
-                    <form onsubmit="handleContactSubmit(event)" class="space-y-6">
-                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                            <div class="space-y-2">
-                                <label class="text-xs font-semibold uppercase tracking-wider text-charcoal">Your Name</label>
-                                <input type="text" required placeholder="Jane Doe" 
-                                       class="w-full px-4 py-3 rounded-xl border border-warmgold-200 focus:outline-none focus:border-warmgold text-sm bg-ivory/50">
-                            </div>
-                            <div class="space-y-2">
-                                <label class="text-xs font-semibold uppercase tracking-wider text-charcoal">Your Email</label>
-                                <input type="email" required placeholder="jane@example.com" 
-                                       class="w-full px-4 py-3 rounded-xl border border-warmgold-200 focus:outline-none focus:border-warmgold text-sm bg-ivory/50">
-                            </div>
-                        </div>
-
-                        <div class="space-y-2">
-                            <label class="text-xs font-semibold uppercase tracking-wider text-charcoal">Subject</label>
-                            <input type="text" required placeholder="Skincare Consultation Inquiry" 
-                                   class="w-full px-4 py-3 rounded-xl border border-warmgold-200 focus:outline-none focus:border-warmgold text-sm bg-ivory/50">
-                        </div>
-
-                        <div class="space-y-2">
-                            <label class="text-xs font-semibold uppercase tracking-wider text-charcoal">Message</label>
-                            <textarea rows="4" required placeholder="How can we help your skin glow today?" 
-                                      class="w-full px-4 py-3 rounded-xl border border-warmgold-200 focus:outline-none focus:border-warmgold text-sm bg-ivory/50 resize-none"></textarea>
-                        </div>
-
-                        <button type="submit" class="w-full py-4 rounded-xl btn-gold font-medium text-xs tracking-widest uppercase shadow-md">
-                            Send Message
-                        </button>
-                    </form>
-                </div>
-
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer Section -->
-    <footer class="bg-charcoal text-ivory pt-16 pb-12 border-t border-warmgold-300/20">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 pb-16 border-b border-white/10">
-                
-                <!-- Col 1: Brand Info -->
-                <div class="lg:col-span-2 space-y-4">
-                    <a href="#home" class="inline-block">
-                        <span class="text-2xl font-serif font-bold tracking-wider text-white">
-                            VELORA <span class="font-light italic text-warmgold-300">Beauty</span>
-                        </span>
-                    </a>
-                    <p class="text-gray-400 text-sm font-light max-w-sm">
-                        Oasis Infobyte Web Development & Designing Internship (Level 1 Task 1). Crafting sophisticated digital experiences and clean botanical skincare.
-                    </p>
-                    <div class="flex items-center space-x-4 pt-2">
-                        <a href="#" aria-label="Instagram" class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-warmgold-200 hover:bg-warmgold hover:text-white transition-colors">
-                            <i class="fa-brands fa-instagram"></i>
-                        </a>
-                        <a href="#" aria-label="Facebook" class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-warmgold-200 hover:bg-warmgold hover:text-white transition-colors">
-                            <i class="fa-brands fa-facebook-f"></i>
-                        </a>
-                        <a href="#" aria-label="Pinterest" class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-warmgold-200 hover:bg-warmgold hover:text-white transition-colors">
-                            <i class="fa-brands fa-pinterest-p"></i>
-                        </a>
-                        <a href="#" aria-label="Twitter" class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-warmgold-200 hover:bg-warmgold hover:text-white transition-colors">
-                            <i class="fa-brands fa-twitter"></i>
-                        </a>
-                    </div>
-                </div>
-
-                <!-- Col 2: Quick Links -->
-                <div class="space-y-4">
-                    <h4 class="font-serif font-semibold text-white tracking-wider uppercase text-sm">Quick Links</h4>
-                    <ul class="space-y-2 text-sm text-gray-400 font-light">
-                        <li><a href="#home" class="hover:text-warmgold-200 transition-colors">Home</a></li>
-                        <li><a href="#products" class="hover:text-warmgold-200 transition-colors">Products</a></li>
-                        <li><a href="#about" class="hover:text-warmgold-200 transition-colors">Our Story</a></li>
-                        <li><a href="#skincare" class="hover:text-warmgold-200 transition-colors">Skincare Guide</a></li>
-                        <li><a href="#contact" class="hover:text-warmgold-200 transition-colors">Contact Us</a></li>
-                    </ul>
-                </div>
-
-                <!-- Col 3: Categories -->
-                <div class="space-y-4">
-                    <h4 class="font-serif font-semibold text-white tracking-wider uppercase text-sm">Collections</h4>
-                    <ul class="space-y-2 text-sm text-gray-400 font-light">
-                        <li><a href="#products" class="hover:text-warmgold-200 transition-colors">Serums & Oils</a></li>
-                        <li><a href="#products" class="hover:text-warmgold-200 transition-colors">Daily Moisturizers</a></li>
-                        <li><a href="#products" class="hover:text-warmgold-200 transition-colors">Botanical Cleansers</a></li>
-                        <li><a href="#products" class="hover:text-warmgold-200 transition-colors">Illuminating Creams</a></li>
-                        <li><a href="#products" class="hover:text-warmgold-200 transition-colors">Gift Sets</a></li>
-                    </ul>
-                </div>
-
-                <!-- Col 4: Newsletter -->
-                <div class="space-y-4">
-                    <h4 class="font-serif font-semibold text-white tracking-wider uppercase text-sm">Newsletter</h4>
-                    <p class="text-xs text-gray-400 font-light">Subscribe to receive 15% off your first order and expert skincare tips.</p>
-                    <form onsubmit="handleNewsletter(event)" class="space-y-2">
-                        <input type="email" required placeholder="Enter your email" 
-                               class="w-full px-4 py-2.5 rounded-lg bg-white/10 border border-white/20 text-white placeholder-gray-400 text-xs focus:outline-none focus:border-warmgold">
-                        <button type="submit" class="w-full py-2.5 rounded-lg btn-gold text-xs uppercase tracking-wider font-semibold">
-                            Subscribe
-                        </button>
-                    </form>
-                </div>
-
-            </div>
-
-            <!-- Bottom Copyright & Portfolio badge -->
-            <div class="pt-8 flex flex-col md:flex-row items-center justify-between text-xs text-gray-400 font-light space-y-4 md:space-y-0">
-                <p>&copy; 2026 Velora Beauty. All rights reserved. Designed for Oasis Infobyte Web Development & Designing (Level 1 Task 1).</p>
-                <div class="flex items-center space-x-6">
-                    <a href="#" class="hover:text-warmgold-200 transition-colors">Privacy Policy</a>
-                    <a href="#" class="hover:text-warmgold-200 transition-colors">Terms of Service</a>
-                    <a href="#readme-modal" onclick="openReadmeModal()" class="text-warmgold-300 font-medium hover:underline">View README.md</a>
-                </div>
-            </div>
-        </div>
-    </footer>
-
-    <!-- Custom Notification / Cart Modal -->
-    <div id="custom-modal" class="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm hidden opacity-0 transition-opacity duration-300">
-        <div class="bg-white rounded-3xl p-8 max-w-md w-full mx-4 card-shadow text-center space-y-4 transform scale-95 transition-transform duration-300" id="modal-content-box">
-            <div class="w-16 h-16 rounded-full bg-warmgold-100 text-warmgold flex items-center justify-center text-3xl mx-auto">
-                <i class="fa-solid fa-bag-shopping"></i>
-            </div>
-            <h3 id="modal-title" class="font-serif text-2xl font-bold text-charcoal">Added to Bag</h3>
-            <p id="modal-desc" class="text-softgray text-sm">Item successfully added to your shopping bag.</p>
-            <div class="pt-2 flex space-x-3">
-                <button onclick="closeModal()" class="flex-1 py-3 rounded-full btn-outline-gold text-xs font-semibold uppercase tracking-wider">
-                    Continue Shopping
-                </button>
-                <button onclick="closeModal()" class="flex-1 py-3 rounded-full btn-gold text-xs font-semibold uppercase tracking-wider">
-                    View Bag
-                </button>
-            </div>
-        </div>
+      </div>
     </div>
+  </footer>
 
-    <!-- README Modal for Internship Portfolio Review -->
-    <div id="readme-modal" class="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm hidden opacity-0 transition-opacity duration-300">
-        <div class="bg-ivory rounded-3xl p-8 max-w-2xl w-full mx-4 card-shadow space-y-6 max-h-[85vh] overflow-y-auto">
-            <div class="flex items-center justify-between border-b border-warmgold-200 pb-4">
-                <div class="flex items-center space-x-3">
-                    <span class="w-10 h-10 rounded-full bg-warmgold-200 flex items-center justify-center text-warmgold">
-                        <i class="fa-solid fa-file-lines text-lg"></i>
-                    </span>
-                    <div>
-                        <h3 class="font-serif text-xl font-bold text-charcoal">README.md</h3>
-                        <p class="text-xs text-softgray">Oasis Infobyte Web Dev & Design • Level 1 Task 1</p>
-                    </div>
-                </div>
-                <button onclick="closeReadmeModal()" class="text-charcoal hover:text-warmgold text-xl font-bold">
-                    <i class="fa-solid fa-xmark"></i>
-                </button>
-            </div>
-
-            <div class="space-y-4 text-sm text-softgray leading-relaxed font-light">
-                <div>
-                    <h4 class="font-serif font-semibold text-charcoal text-base mb-1">Project Overview</h4>
-                    <p>Velora Beauty is a modern, elegant, and fully responsive landing page featuring a Warm Luxury Gold theme inspired by our flagship boutique interior, created as Level 1 Task 1 for the Oasis Infobyte Web Development and Designing Internship.</p>
-                </div>
-                <div>
-                    <h4 class="font-serif font-semibold text-charcoal text-base mb-1">Technologies Used</h4>
-                    <ul class="list-disc pl-5 space-y-1">
-                        <li><strong>HTML5:</strong> Semantic markup (`header`, `section`, `nav`, `footer`, `article`).</li>
-                        <li><strong>CSS3 / Tailwind:</strong> Advanced Flexbox and CSS Grid alignments, custom warm gold color palettes, media queries, and smooth transition effects.</li>
-                        <li><strong>Google Fonts & FontAwesome:</strong> Playfair Display & Inter typography combined with professional iconography.</li>
-                    </ul>
-                </div>
-                <div>
-                    <h4 class="font-serif font-semibold text-charcoal text-base mb-1">Key Features</h4>
-                    <ul class="list-disc pl-5 space-y-1">
-                        <li>Sticky Navigation Bar with mobile hamburger toggle.</li>
-                        <li>Engaging Hero section featuring flagship boutique imagery and clear CTA.</li>
-                        <li>Featured Products grid showcasing 4 bestselling skincare items with ratings and pricing.</li>
-                        <li>Promotional Banner and About section highlighting quality ingredients.</li>
-                        <li>Responsive Footer with contact information, quick links, newsletter form, and social icons.</li>
-                    </ul>
-                </div>
-                <div>
-                    <h4 class="font-serif font-semibold text-charcoal text-base mb-1">Instructions to Run Locally (Online & Offline)</h4>
-                    <ol class="list-decimal pl-5 space-y-1">
-                        <li>Save the code into a single file named <code class="bg-warmgold-100 px-1.5 py-0.5 rounded text-charcoal">index.html</code>.</li>
-                        <li>Open the file in any modern web browser on desktop or mobile. Works offline with built-in image fallbacks!</li>
-                    </ol>
-                </div>
-            </div>
-
-            <div class="pt-4 border-t border-warmgold-200 text-center">
-                <button onclick="closeReadmeModal()" class="px-8 py-3 rounded-full btn-gold text-xs font-semibold uppercase tracking-wider">
-                    Close Documentation
-                </button>
-            </div>
-        </div>
-    </div>
-
-    <!-- JavaScript Interactions -->
-    <script>
-        // Mobile menu toggle
-        const menuBtn = document.getElementById('menu-btn');
-        const mobileMenu = document.getElementById('mobile-menu');
-
-        menuBtn.addEventListener('click', () => {
-            mobileMenu.classList.toggle('hidden');
-        });
-
-        // Close mobile menu when link is clicked
-        const mobileLinks = mobileMenu.querySelectorAll('a');
-        mobileLinks.forEach(link => {
-            link.addEventListener('click', () => {
-                mobileMenu.classList.add('hidden');
-            });
-        });
-
-        // Modal functions
-        function openModal(productName, productPrice) {
-            const modal = document.getElementById('custom-modal');
-            const modalBox = document.getElementById('modal-content-box');
-            document.getElementById('modal-title').innerText = "Added to Bag";
-            document.getElementById('modal-desc').innerText = `${productName} (${productPrice}) has been successfully added to your shopping bag.`;
-            
-            modal.classList.remove('hidden');
-            setTimeout(() => {
-                modal.classList.remove('opacity-0');
-                modalBox.classList.remove('scale-95');
-                modalBox.classList.add('scale-100');
-            }, 10);
-        }
-
-        function closeModal() {
-            const modal = document.getElementById('custom-modal');
-            const modalBox = document.getElementById('modal-content-box');
-            modal.classList.add('opacity-0');
-            modalBox.classList.remove('scale-100');
-            modalBox.classList.add('scale-95');
-            setTimeout(() => {
-                modal.classList.add('hidden');
-            }, 300);
-        }
-
-        // Contact Form Submit Handler
-        function handleContactSubmit(e) {
-            e.preventDefault();
-            const modal = document.getElementById('custom-modal');
-            const modalBox = document.getElementById('modal-content-box');
-            document.getElementById('modal-title').innerText = "Message Sent";
-            document.getElementById('modal-desc').innerText = "Thank you for contacting Velora Beauty. Our beauty concierge will get back to you shortly!";
-            
-            modal.classList.remove('hidden');
-            setTimeout(() => {
-                modal.classList.remove('opacity-0');
-                modalBox.classList.remove('scale-95');
-                modalBox.classList.add('scale-100');
-            }, 10);
-            e.target.reset();
-        }
-
-        // Newsletter Submit Handler
-        function handleNewsletter(e) {
-            e.preventDefault();
-            const modal = document.getElementById('custom-modal');
-            const modalBox = document.getElementById('modal-content-box');
-            document.getElementById('modal-title').innerText = "Successfully Subscribed";
-            document.getElementById('modal-desc').innerText = "Welcome to Velora Beauty! Your 15% discount code has been sent to your email.";
-            
-            modal.classList.remove('hidden');
-            setTimeout(() => {
-                modal.classList.remove('opacity-0');
-                modalBox.classList.remove('scale-95');
-                modalBox.classList.add('scale-100');
-            }, 10);
-            e.target.reset();
-        }
-
-        // README Modal functions
-        function openReadmeModal() {
-            const modal = document.getElementById('readme-modal');
-            modal.classList.remove('hidden');
-            setTimeout(() => {
-                modal.classList.remove('opacity-0');
-            }, 10);
-        }
-
-        function closeReadmeModal() {
-            const modal = document.getElementById('readme-modal');
-            modal.classList.add('opacity-0');
-            setTimeout(() => {
-                modal.classList.add('hidden');
-            }, 300);
-        }
-
-        // Close modal on outside click
-        window.onclick = function(event) {
-            const modal = document.getElementById('custom-modal');
-            const readmeModal = document.getElementById('readme-modal');
-            if (event.target === modal) {
-                closeModal();
-            }
-            if (event.target === readmeModal) {
-                closeReadmeModal();
-            }
-        }
-    </script>
 </body>
 </html>
