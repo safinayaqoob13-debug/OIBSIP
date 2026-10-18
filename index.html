@@ -1,0 +1,893 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TempConvert | OIBSIP Task 3</title>
+  <!-- Google Fonts & Font Awesome Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <style>
+    /* ==========================================================================
+       RESET & ELEGANT CUSTOM PROPERTIES
+       ========================================================================== */
+    :root {
+      --bg-body: #f8fafc;
+      --card-bg: #ffffff;
+      --card-border: #e2e8f0;
+      
+      --text-primary: #0f172a;
+      --text-secondary: #475569;
+      --text-muted: #94a3b8;
+      
+      --accent: #2563eb;
+      --accent-hover: #1d4ed8;
+      --accent-soft: rgba(37, 99, 235, 0.08);
+      
+      --input-bg: #f1f5f9;
+      --input-border: #cbd5e1;
+      
+      --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.05);
+      --shadow-card: 0 20px 40px -15px rgba(0, 0, 0, 0.05);
+      
+      --font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      --transition: all 0.25s ease-in-out;
+    }
+
+    /* Dark Mode Overrides */
+    [data-theme="dark"] {
+      --bg-body: #0b0f19;
+      --card-bg: #111827;
+      --card-border: #1f2937;
+      
+      --text-primary: #f9fafb;
+      --text-secondary: #9ca3af;
+      --text-muted: #6b7280;
+      
+      --accent: #3b82f6;
+      --accent-hover: #60a5fa;
+      --accent-soft: rgba(59, 130, 246, 0.12);
+      
+      --input-bg: #1f2937;
+      --input-border: #374151;
+      
+      --shadow-card: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      font-family: var(--font-family);
+    }
+
+    body {
+      background-color: var(--bg-body);
+      color: var(--text-primary);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      transition: var(--transition);
+      line-height: 1.5;
+    }
+
+    /* ==========================================================================
+       NAVIGATION BAR
+       ========================================================================== */
+    .navbar {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      padding: 1rem 2rem;
+      background: var(--card-bg);
+      border-bottom: 1px solid var(--card-border);
+      transition: var(--transition);
+    }
+
+    .nav-container {
+      max-width: 1000px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      text-decoration: none;
+      letter-spacing: -0.02em;
+    }
+
+    .logo-icon {
+      color: var(--accent);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 1.8rem;
+    }
+
+    .nav-link {
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 500;
+      transition: var(--transition);
+    }
+
+    .nav-link:hover, .nav-link.active {
+      color: var(--accent);
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+    }
+
+    .theme-btn, .hamburger {
+      background: var(--input-bg);
+      border: 1px solid var(--card-border);
+      color: var(--text-primary);
+      width: 38px;
+      height: 38px;
+      border-radius: 10px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      transition: var(--transition);
+    }
+
+    .theme-btn:hover, .hamburger:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    .hamburger {
+      display: none;
+    }
+
+    /* ==========================================================================
+       MAIN LAYOUT & HERO
+       ========================================================================== */
+    main {
+      flex: 1;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+
+    .hero-section {
+      padding: 4rem 1.5rem 2rem;
+      text-align: center;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      background: var(--accent-soft);
+      color: var(--accent);
+      padding: 0.35rem 0.9rem;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+    }
+
+    .hero-title {
+      font-size: 2.5rem;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      margin-bottom: 0.8rem;
+      color: var(--text-primary);
+    }
+
+    .hero-subtitle {
+      font-size: 1.05rem;
+      color: var(--text-secondary);
+      max-width: 550px;
+      margin: 0 auto;
+    }
+
+    /* ==========================================================================
+       ELEGANT CARD STYLING & CONVERTER
+       ========================================================================== */
+    .converter-section {
+      padding: 2rem 0 4rem;
+    }
+
+    .elegant-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 20px;
+      box-shadow: var(--shadow-card);
+      transition: var(--transition);
+    }
+
+    .converter-card {
+      max-width: 520px;
+      margin: 0 auto;
+      padding: 2.2rem;
+    }
+
+    .card-header {
+      text-align: center;
+      margin-bottom: 1.8rem;
+    }
+
+    .card-header h2 {
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 0.3rem;
+    }
+
+    .card-header p {
+      color: var(--text-secondary);
+      font-size: 0.88rem;
+    }
+
+    .input-group {
+      margin-bottom: 1.2rem;
+    }
+
+    .input-group label {
+      display: block;
+      font-size: 0.85rem;
+      font-weight: 600;
+      margin-bottom: 0.4rem;
+      color: var(--text-secondary);
+    }
+
+    .input-wrapper input {
+      width: 100%;
+      padding: 0.85rem 1rem;
+      background: var(--input-bg);
+      border: 1px solid var(--input-border);
+      border-radius: 12px;
+      color: var(--text-primary);
+      font-size: 1rem;
+      font-weight: 500;
+      outline: none;
+      transition: var(--transition);
+    }
+
+    .input-wrapper input:focus {
+      border-color: var(--accent);
+      background: var(--card-bg);
+    }
+
+    .error-msg {
+      color: #ef4444;
+      font-size: 0.8rem;
+      margin-top: 0.3rem;
+      display: block;
+      min-height: 1.1rem;
+    }
+
+    /* Units Selectors */
+    .units-row {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .select-group {
+      flex: 1;
+    }
+
+    .select-group label {
+      display: block;
+      font-size: 0.82rem;
+      font-weight: 600;
+      margin-bottom: 0.4rem;
+      color: var(--text-secondary);
+    }
+
+    .select-group select {
+      width: 100%;
+      padding: 0.8rem;
+      background: var(--input-bg);
+      border: 1px solid var(--input-border);
+      border-radius: 12px;
+      color: var(--text-primary);
+      font-size: 0.9rem;
+      font-weight: 500;
+      outline: none;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .select-group select:focus {
+      border-color: var(--accent);
+      background: var(--card-bg);
+    }
+
+    .swap-btn {
+      margin-top: 1.1rem;
+      background: var(--input-bg);
+      border: 1px solid var(--input-border);
+      color: var(--text-secondary);
+      width: 42px;
+      height: 42px;
+      border-radius: 12px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.95rem;
+      transition: var(--transition);
+    }
+
+    .swap-btn:hover {
+      background: var(--accent-soft);
+      color: var(--accent);
+      border-color: var(--accent);
+    }
+
+    /* Button Group */
+    .button-group {
+      display: flex;
+      gap: 0.8rem;
+    }
+
+    .btn {
+      flex: 1;
+      padding: 0.85rem;
+      border-radius: 12px;
+      border: none;
+      font-weight: 600;
+      font-size: 0.95rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      transition: var(--transition);
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: #ffffff;
+    }
+
+    .btn-primary:hover {
+      background: var(--accent-hover);
+    }
+
+    .btn-secondary {
+      background: var(--input-bg);
+      border: 1px solid var(--input-border);
+      color: var(--text-secondary);
+    }
+
+    .btn-secondary:hover {
+      background: var(--card-border);
+      color: var(--text-primary);
+    }
+
+    /* Result Box */
+    .result-box {
+      margin-top: 1.5rem;
+      padding: 1.25rem;
+      background: var(--accent-soft);
+      border: 1px solid var(--accent);
+      border-radius: 14px;
+      text-align: center;
+      animation: fadeIn 0.3s ease forwards;
+    }
+
+    .result-box.hidden {
+      display: none;
+    }
+
+    .result-badge {
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      font-weight: 700;
+      color: var(--accent);
+      margin-bottom: 0.3rem;
+    }
+
+    .result-main {
+      font-size: 2.2rem;
+      font-weight: 800;
+      color: var(--text-primary);
+      margin-bottom: 0.3rem;
+    }
+
+    .formula-box {
+      font-size: 0.82rem;
+      color: var(--text-secondary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.4rem;
+    }
+
+    /* ==========================================================================
+       FEATURES SECTION
+       ========================================================================== */
+    .features-section {
+      padding: 3rem 0;
+    }
+
+    .section-title {
+      text-align: center;
+      font-size: 1.8rem;
+      font-weight: 700;
+      margin-bottom: 2rem;
+      color: var(--text-primary);
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.2rem;
+    }
+
+    .feature-card {
+      padding: 1.5rem;
+      text-align: center;
+    }
+
+    .feature-icon {
+      width: 44px;
+      height: 44px;
+      background: var(--accent-soft);
+      color: var(--accent);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      margin: 0 auto 1rem;
+    }
+
+    .feature-card h3 {
+      font-size: 1.05rem;
+      font-weight: 600;
+      margin-bottom: 0.4rem;
+      color: var(--text-primary);
+    }
+
+    .feature-card p {
+      color: var(--text-secondary);
+      font-size: 0.85rem;
+      line-height: 1.4;
+    }
+
+    /* ==========================================================================
+       ABOUT SECTION & FOOTER
+       ========================================================================== */
+    .about-section {
+      padding: 2rem 0 4rem;
+    }
+
+    .about-card {
+      padding: 2rem;
+      text-align: center;
+      max-width: 650px;
+      margin: 0 auto;
+    }
+
+    .about-card h2 {
+      font-size: 1.4rem;
+      font-weight: 700;
+      margin-bottom: 0.8rem;
+      color: var(--text-primary);
+    }
+
+    .about-card p {
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+      line-height: 1.6;
+      margin-bottom: 1.2rem;
+    }
+
+    .tech-tags {
+      display: flex;
+      justify-content: center;
+      gap: 0.6rem;
+      flex-wrap: wrap;
+    }
+
+    .tag {
+      background: var(--input-bg);
+      border: 1px solid var(--input-border);
+      color: var(--text-secondary);
+      padding: 0.3rem 0.8rem;
+      border-radius: 15px;
+      font-size: 0.8rem;
+      font-weight: 500;
+    }
+
+    .footer {
+      border-top: 1px solid var(--card-border);
+      padding: 1.5rem 0;
+      background: var(--card-bg);
+      transition: var(--transition);
+    }
+
+    .footer-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+      font-size: 0.88rem;
+      color: var(--text-secondary);
+    }
+
+    .footer-socials a {
+      color: var(--text-secondary);
+      margin-left: 1rem;
+      font-size: 1.1rem;
+      transition: var(--transition);
+    }
+
+    .footer-socials a:hover {
+      color: var(--accent);
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .hero-title { font-size: 2rem; }
+      .hamburger { display: flex; }
+      
+      .nav-links {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background: var(--card-bg);
+        flex-direction: column;
+        padding: 1.2rem;
+        gap: 1rem;
+        display: none;
+        border-bottom: 1px solid var(--card-border);
+      }
+
+      .nav-links.active {
+        display: flex;
+      }
+
+      .units-row {
+        flex-direction: column;
+      }
+
+      .swap-btn {
+        margin: 0.1rem 0;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header Navigation -->
+  <header class="navbar">
+    <div class="nav-container">
+      <a href="#home" class="logo">
+        <i class="fa-solid fa-temperature-half logo-icon"></i>
+        <span>TempConvert</span>
+      </a>
+
+      <nav class="nav-links" id="navLinks">
+        <a href="#home" class="nav-link active">Home</a>
+        <a href="#convert" class="nav-link">Convert</a>
+        <a href="#features" class="nav-link">Features</a>
+        <a href="#about" class="nav-link">About</a>
+      </nav>
+
+      <div class="nav-actions">
+        <button id="themeToggle" class="theme-btn" aria-label="Toggle Theme">
+          <i class="fa-solid fa-moon"></i>
+        </button>
+        <button id="hamburger" class="hamburger" aria-label="Toggle Navigation">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- Hero Section -->
+    <section id="home" class="hero-section">
+      <div class="hero-content">
+        <span class="badge"><i class="fa-solid fa-graduation-cap"></i> OIBSIP Web Dev – Task 3</span>
+        <h1 class="hero-title">Temperature Converter</h1>
+        <p class="hero-subtitle">Convert temperatures effortlessly with real-time accuracy and a simple, elegant interface.</p>
+      </div>
+    </section>
+
+    <!-- Converter Section -->
+    <section id="convert" class="converter-section">
+      <div class="container">
+        <div class="elegant-card converter-card">
+          <div class="card-header">
+            <h2>Quick Converter</h2>
+            <p>Select units, enter value, and compute instant results</p>
+          </div>
+
+          <form id="calcForm" onsubmit="return false;">
+            <!-- Input Value -->
+            <div class="input-group">
+              <label for="tempInput">Enter Value</label>
+              <div class="input-wrapper">
+                <input type="number" id="tempInput" placeholder="e.g. 25 or -10" step="any" required>
+              </div>
+              <small class="error-msg" id="errorMsg"></small>
+            </div>
+
+            <!-- Unit Selectors Row -->
+            <div class="units-row">
+              <div class="select-group">
+                <label for="fromUnit">From</label>
+                <select id="fromUnit">
+                  <option value="C" selected>Celsius (°C)</option>
+                  <option value="F">Fahrenheit (°F)</option>
+                  <option value="K">Kelvin (K)</option>
+                </select>
+              </div>
+
+              <button type="button" id="swapBtn" class="swap-btn" title="Swap Units" aria-label="Swap Units">
+                <i class="fa-solid fa-right-left"></i>
+              </button>
+
+              <div class="select-group">
+                <label for="toUnit">To</label>
+                <select id="toUnit">
+                  <option value="C">Celsius (°C)</option>
+                  <option value="F" selected>Fahrenheit (°F)</option>
+                  <option value="K">Kelvin (K)</option>
+                </select>
+              </div>
+            </div>
+
+            <!-- Control Buttons -->
+            <div class="button-group">
+              <button type="button" id="convertBtn" class="btn btn-primary">
+                Convert
+              </button>
+              <button type="button" id="resetBtn" class="btn btn-secondary">
+                Reset
+              </button>
+            </div>
+          </form>
+
+          <!-- Result Display Card -->
+          <div id="resultBox" class="result-box hidden">
+            <div class="result-badge">Result</div>
+            <div class="result-main">
+              <span id="resultValue" class="result-val">--</span>
+              <span id="resultUnit" class="result-unit">°F</span>
+            </div>
+            <div class="formula-box">
+              <i class="fa-solid fa-circle-info"></i>
+              <span id="formulaText">Formula: (°C × 9/5) + 32 = °F</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="features-section">
+      <div class="container">
+        <h2 class="section-title">Key Features</h2>
+        <div class="features-grid">
+          <div class="elegant-card feature-card">
+            <div class="feature-icon"><i class="fa-solid fa-bolt"></i></div>
+            <h3>Instant Conversion</h3>
+            <p>Calculates results instantly with real-time input responses.</p>
+          </div>
+          <div class="elegant-card feature-card">
+            <div class="feature-icon"><i class="fa-solid fa-bullseye"></i></div>
+            <h3>Absolute Precision</h3>
+            <p>Accurate calculations enforcing thermodynamic limits.</p>
+          </div>
+          <div class="elegant-card feature-card">
+            <div class="feature-icon"><i class="fa-solid fa-mobile-screen"></i></div>
+            <h3>Fully Responsive</h3>
+            <p>Seamlessly optimized for mobile, tablet, and desktop displays.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about-section">
+      <div class="container">
+        <div class="elegant-card about-card">
+          <h2>About This Project</h2>
+          <p>
+            Built for the <strong>Oasis Infobyte Internship Program (OIBSIP)</strong> under Web Development Task 3.
+          </p>
+          <div class="tech-tags">
+            <span class="tag">HTML5</span>
+            <span class="tag">CSS3</span>
+            <span class="tag">JavaScript</span>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container footer-content">
+      <p>Designed & Developed by <strong>Safina Yaqoob</strong> | OIBSIP – Task 3</p>
+      <div class="footer-socials">
+        <a href="https://github.com" target="_blank" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+        <a href="https://linkedin.com" target="_blank" aria-label="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      // DOM Elements
+      const tempInput = document.getElementById("tempInput");
+      const fromUnit = document.getElementById("fromUnit");
+      const toUnit = document.getElementById("toUnit");
+      const convertBtn = document.getElementById("convertBtn");
+      const resetBtn = document.getElementById("resetBtn");
+      const swapBtn = document.getElementById("swapBtn");
+      const resultBox = document.getElementById("resultBox");
+      const resultValue = document.getElementById("resultValue");
+      const resultUnit = document.getElementById("resultUnit");
+      const formulaText = document.getElementById("formulaText");
+      const errorMsg = document.getElementById("errorMsg");
+      const themeToggle = document.getElementById("themeToggle");
+      const hamburger = document.getElementById("hamburger");
+      const navLinks = document.getElementById("navLinks");
+
+      // Mobile Navigation Toggle
+      hamburger.addEventListener("click", () => {
+        navLinks.classList.toggle("active");
+      });
+
+      // Dark/Light Theme Switcher
+      themeToggle.addEventListener("click", () => {
+        const currentTheme = document.documentElement.getAttribute("data-theme");
+        if (currentTheme === "dark") {
+          document.documentElement.removeAttribute("data-theme");
+          themeToggle.innerHTML = '<i class="fa-solid fa-moon"></i>';
+        } else {
+          document.documentElement.setAttribute("data-theme", "dark");
+          themeToggle.innerHTML = '<i class="fa-solid fa-sun"></i>';
+        }
+      });
+
+      // Swap Units
+      swapBtn.addEventListener("click", () => {
+        const temp = fromUnit.value;
+        fromUnit.value = toUnit.value;
+        toUnit.value = temp;
+        if (tempInput.value !== "") {
+          convertTemperature();
+        }
+      });
+
+      // Perform Calculation
+      function convertTemperature() {
+        const val = parseFloat(tempInput.value);
+        const from = fromUnit.value;
+        const to = toUnit.value;
+
+        if (isNaN(val)) {
+          errorMsg.textContent = "Please enter a valid numeric value.";
+          resultBox.classList.add("hidden");
+          return;
+        }
+
+        // Absolute Zero Validations
+        if (from === "C" && val < -273.15) {
+          errorMsg.textContent = "Temperature cannot be below Absolute Zero (-273.15 °C).";
+          resultBox.classList.add("hidden");
+          return;
+        }
+        if (from === "F" && val < -459.67) {
+          errorMsg.textContent = "Temperature cannot be below Absolute Zero (-459.67 °F).";
+          resultBox.classList.add("hidden");
+          return;
+        }
+        if (from === "K" && val < 0) {
+          errorMsg.textContent = "Kelvin temperature cannot be negative.";
+          resultBox.classList.add("hidden");
+          return;
+        }
+
+        errorMsg.textContent = "";
+
+        let convertedVal = 0;
+        let formula = "";
+
+        if (from === to) {
+          convertedVal = val;
+          formula = `Same unit selected (${from}).`;
+        } 
+        else if (from === "C" && to === "F") {
+          convertedVal = (val * 9) / 5 + 32;
+          formula = `(${val}°C × 9/5) + 32 = ${convertedVal.toFixed(2)}°F`;
+        } else if (from === "C" && to === "K") {
+          convertedVal = val + 273.15;
+          formula = `${val}°C + 273.15 = ${convertedVal.toFixed(2)}K`;
+        } 
+        else if (from === "F" && to === "C") {
+          convertedVal = ((val - 32) * 5) / 9;
+          formula = `(${val}°F - 32) × 5/9 = ${convertedVal.toFixed(2)}°C`;
+        } else if (from === "F" && to === "K") {
+          convertedVal = ((val - 32) * 5) / 9 + 273.15;
+          formula = `(${val}°F - 32) × 5/9 + 273.15 = ${convertedVal.toFixed(2)}K`;
+        } 
+        else if (from === "K" && to === "C") {
+          convertedVal = val - 273.15;
+          formula = `${val}K - 273.15 = ${convertedVal.toFixed(2)}°C`;
+        } else if (from === "K" && to === "F") {
+          convertedVal = ((val - 273.15) * 9) / 5 + 32;
+          formula = `(${val}K - 273.15) × 9/5 + 32 = ${convertedVal.toFixed(2)}°F`;
+        }
+
+        let unitSymbol = "";
+        if (to === "C") unitSymbol = "°C";
+        else if (to === "F") unitSymbol = "°F";
+        else if (to === "K") unitSymbol = "K";
+
+        resultValue.textContent = convertedVal.toFixed(2);
+        resultUnit.textContent = unitSymbol;
+        formulaText.textContent = `Formula: ${formula}`;
+        resultBox.classList.remove("hidden");
+      }
+
+      // Event Listeners
+      convertBtn.addEventListener("click", convertTemperature);
+      tempInput.addEventListener("input", () => {
+        if (tempInput.value.trim() !== "") {
+          convertTemperature();
+        } else {
+          resultBox.classList.add("hidden");
+          errorMsg.textContent = "";
+        }
+      });
+      fromUnit.addEventListener("change", () => { if (tempInput.value !== "") convertTemperature(); });
+      toUnit.addEventListener("change", () => { if (tempInput.value !== "") convertTemperature(); });
+
+      // Reset
+      resetBtn.addEventListener("click", () => {
+        tempInput.value = "";
+        fromUnit.value = "C";
+        toUnit.value = "F";
+        errorMsg.textContent = "";
+        resultBox.classList.add("hidden");
+      });
+    });
+  </script>
+</body>
+</html>
