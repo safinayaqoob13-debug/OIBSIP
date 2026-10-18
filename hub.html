@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Projects Hub | Safina Yaqoob</title>
+<style>
+:root{
+  --cream:#FBF9F3; --paper:#F3EFE2; --olive:#5B6B2F; --olive-dark:#3F4A20; --olive-soft:#E4E8D2;
+  --ink:#2B2B22; --muted:#66665A; --line:#D9D6C5;
+  --font:"Times New Roman",Times,serif;
+  --max:900px; --radius:6px; --ease:.3s ease;
+}
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;font-family:var(--font);background:var(--cream);color:var(--ink);font-size:1.1rem;line-height:1.7;padding:3rem 1rem}
+.wrap{max-width:var(--max);margin:0 auto}
+header{text-align:center;margin-bottom:3rem}
+h1{font-size:clamp(2rem,5vw,3rem);color:var(--olive-dark);margin:0 0 0.5rem}
+p.subtitle{color:var(--muted);margin:0}
+.projects-grid{display:grid;gap:1.5rem}
+.project-card{background:var(--paper);border:1px solid var(--line);border-left:5px solid var(--olive);border-radius:var(--radius);padding:1.8rem;transition:transform var(--ease), box-shadow var(--ease)}
+.project-card:hover{transform:translateY(-3px);box-shadow:0 6px 16px rgba(0,0,0,.06)}
+.project-card h2{color:var(--olive-dark);margin:0 0 0.5rem;font-size:1.4rem}
+.project-card p{color:var(--muted);margin:0 0 1rem}
+.tags{display:flex;flex-wrap:wrap;gap:.5rem;list-style:none;padding:0;margin:0 0 1.2rem}
+.tags li{font-size:.9rem;padding:.15rem .7rem;border:1px solid var(--olive);border-radius:999px;color:var(--olive-dark);background:var(--olive-soft)}
+.actions{display:flex;flex-wrap:wrap;gap:1rem}
+.btn{display:inline-block;font:inherit;font-weight:bold;font-size:.95rem;padding:.5rem 1.2rem;border-radius:var(--radius);border:2px solid var(--olive);background:var(--olive);color:#fff;text-decoration:none;cursor:pointer;transition:background var(--ease),transform var(--ease)}
+.btn:hover{background:var(--olive-dark);transform:translateY(-2px)}
+.btn.ghost{background:transparent;color:var(--olive-dark)}
+.btn.ghost:hover{background:var(--olive);color:#fff}
+footer{text-align:center;margin-top:4rem;color:var(--muted);font-size:.95rem}
+footer a{color:var(--olive-dark)}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <header>
+    <h1>Safina Yaqoob's Project Hub</h1>
+    <p class="subtitle">A central directory of my front-end web development projects and internship tasks.</p>
+  </header>
+
+  <main class="projects-grid">
+    <!-- Portfolio -->
+    <article class="project-card">
+      <h2>Personal Portfolio Website</h2>
+      <p>A clean, responsive personal portfolio showcasing my background, skills, projects, and contact details with a professional olive-cream aesthetic.</p>
+      <ul class="tags"><li>HTML5</li><li>CSS3</li><li>JavaScript</li><li>Responsive Design</li></ul>
+      <div class="actions">
+        <a class="btn" href="index.html" target="_blank">View Portfolio</a>
+      </div>
+    </article>
+
+    <!-- Apex Care Hospital -->
+    <article class="project-card">
+      <h2>Apex Care Hospital Website</h2>
+      <p>A modern and responsive healthcare website presenting hospital services, medical facilities, and essential patient information.</p>
+      <ul class="tags"><li>HTML5</li><li>CSS3</li><li>JavaScript</li></ul>
+      <div class="actions">
+        <a class="btn" href="https://safinayaqoob13-debug.github.io/Apex-Care-International-Hospital-Website-/" target="_blank" rel="noopener">Live Demo</a>
+      </div>
+    </article>
+
+    <!-- School Management Portal -->
+    <article class="project-card">
+      <h2>School Management Dashboard / Portal</h2>
+      <p>An organized administrative dashboard and portal designed to manage academic information, student records, and school features.</p>
+      <ul class="tags"><li>HTML5</li><li>CSS3</li><li>JavaScript</li></ul>
+      <div class="actions">
+        <a class="btn" href="https://safinayaqoob13-debug.github.io/Aetherius-Academy-Portal/" target="_blank" rel="noopener">Live Demo</a>
+      </div>
+    </article>
+  </main>
+
+  <footer>
+    <p>&copy; 2026 Safina Yaqoob | <a href="https://github.com/safinayaqoob13-debug" target="_blank" rel="noopener">GitHub Profile</a></p>
+  </footer>
+</div>
+
+</body>
+</html>
