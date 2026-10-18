@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Safina Yaqoob | Front-End Web Developer</title>
+<meta name="description" content="Portfolio of Safina Yaqoob, a front-end web developer, cybersecurity enthusiast and ADE student at Jinnah University for Women, Karachi.">
+<style>
+:root{
+  --cream:#FBF9F3; --paper:#F3EFE2; --olive:#5B6B2F; --olive-dark:#3F4A20; --olive-soft:#E4E8D2;
+  --ink:#2B2B22; --muted:#66665A; --line:#D9D6C5;
+  --font:"Times New Roman",Times,serif;
+  --max:1100px; --radius:6px; --ease:.3s ease;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:76px}
+body{margin:0;font-family:var(--font);background:var(--cream);color:var(--ink);font-size:1.15rem;line-height:1.7;overflow-x:hidden}
+img{max-width:100%;display:block}
+a{color:var(--olive-dark)}
+h1,h2,h3{line-height:1.2;margin:0 0 .6rem;color:var(--olive-dark)}
+h1{font-size:clamp(2.4rem,6vw,3.8rem)}
+h2{font-size:clamp(1.9rem,4vw,2.6rem)}
+h3{font-size:1.4rem}
+p{margin:0 0 1rem}
+:focus-visible{outline:3px solid var(--olive);outline-offset:3px}
+.wrap{max-width:var(--max);margin:0 auto;padding:0 1.5rem}
+section{padding:5rem 0}
+.alt{background:var(--paper)}
+.section-head{margin-bottom:2.5rem}
+.section-head p{color:var(--muted);max-width:58ch}
+
+/* Navigation */
+.nav{position:fixed;top:0;left:0;right:0;z-index:50;background:rgba(251,249,243,.95);border-bottom:1px solid var(--line);backdrop-filter:blur(6px)}
+.nav .wrap{display:flex;align-items:center;justify-content:space-between;height:68px}
+.logo{font-size:1.5rem;font-weight:bold;text-decoration:none;color:var(--olive-dark)}
+.nav ul{list-style:none;display:flex;gap:1.6rem;margin:0;padding:0}
+.nav ul a{text-decoration:none;color:var(--ink);font-size:1.05rem;padding:.3rem 0;border-bottom:2px solid transparent;transition:var(--ease)}
+.nav ul a:hover,.nav ul a.active{color:var(--olive);border-color:var(--olive)}
+.menu-btn{display:none;background:none;border:1px solid var(--olive);border-radius:var(--radius);width:44px;height:44px;cursor:pointer;padding:0;position:relative}
+.menu-btn span,.menu-btn span::before,.menu-btn span::after{position:absolute;left:11px;width:20px;height:2px;background:var(--olive-dark);transition:transform var(--ease),opacity var(--ease)}
+.menu-btn span{top:20px}.menu-btn span::before{content:"";top:-6px;left:0}.menu-btn span::after{content:"";top:6px;left:0}
+.menu-btn[aria-expanded="true"] span{background:transparent}
+.menu-btn[aria-expanded="true"] span::before{transform:translateY(6px) rotate(45deg)}
+.menu-btn[aria-expanded="true"] span::after{transform:translateY(-6px) rotate(-45deg)}
+
+/* Buttons */
+.btn{display:inline-block;font:inherit;font-weight:bold;font-size:1.05rem;padding:.7rem 1.5rem;border-radius:var(--radius);border:2px solid var(--olive);background:var(--olive);color:#fff;text-decoration:none;cursor:pointer;transition:background var(--ease),color var(--ease),transform var(--ease)}
+.btn:hover{background:var(--olive-dark);border-color:var(--olive-dark);transform:translateY(-2px)}
+.btn.ghost{background:transparent;color:var(--olive-dark)}
+.btn.ghost:hover{background:var(--olive);color:#fff;border-color:var(--olive)}
+.btn.small{padding:.45rem 1.1rem;font-size:.98rem}
+
+/* Hero */
+.hero{padding:9rem 0 5rem;min-height:100vh;display:flex;align-items:center}
+.hero .wrap{display:grid;grid-template-columns:1.2fr .8fr;gap:3.5rem;align-items:center}
+.hero .headline{font-size:1.3rem;font-weight:bold;color:var(--olive);margin-bottom:1rem}
+.typing{font-size:1.25rem;color:var(--muted);min-height:2rem;margin-bottom:1.2rem}
+.typing b{color:var(--olive-dark)}
+.cursor{display:inline-block;width:2px;height:1.1em;background:var(--olive);margin-left:3px;vertical-align:-.15em;animation:blink 1s steps(1) infinite}
+@keyframes blink{50%{opacity:0}}
+.hero p.intro{max-width:56ch}
+.actions{display:flex;flex-wrap:wrap;gap:1rem;margin-top:1.6rem}
+
+/* Image placeholders */
+.frame{position:relative;background:var(--olive-soft);border:2px solid var(--olive);border-radius:var(--radius);overflow:hidden;display:flex;align-items:center;justify-content:center;text-align:center}
+.frame img{width:100%;height:100%;object-fit:cover}
+.frame .ph{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;padding:1rem;color:var(--olive-dark);font-size:1rem;pointer-events:none}
+.frame img:not([hidden]) ~ .ph{display:none}
+.profile-frame{aspect-ratio:4/5;max-width:380px;margin-left:auto;box-shadow:12px 12px 0 var(--olive-soft)}
+.project-frame{aspect-ratio:16/10}
+
+/* About */
+.about{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:start}
+.about blockquote{margin:0;padding:1.5rem 1.8rem;border-left:4px solid var(--olive);background:var(--paper);font-size:1.3rem;font-style:italic;color:var(--olive-dark)}
+.alt .about blockquote{background:var(--cream)}
+
+/* Skills */
+.skills{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1.2rem}
+.skill{background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);padding:1.4rem;transition:transform var(--ease),border-color var(--ease),box-shadow var(--ease)}
+.skill:hover{transform:translateY(-4px);border-color:var(--olive);box-shadow:0 8px 0 var(--olive-soft)}
+.skill .icon{display:inline-flex;align-items:center;justify-content:center;width:46px;height:46px;border-radius:50%;background:var(--olive);color:#fff;font-weight:bold;font-size:.95rem;margin-bottom:.8rem}
+.skill h3{font-size:1.2rem;margin-bottom:.2rem}
+.skill p{margin:0;color:var(--muted);font-size:1rem}
+
+/* Projects */
+.project{display:grid;grid-template-columns:1.1fr .9fr;gap:3rem;align-items:center;padding:2rem 0}
+.project + .project{border-top:1px solid var(--line)}
+.project:nth-child(even) .project-frame{order:2}
+.tags{display:flex;flex-wrap:wrap;gap:.5rem;list-style:none;padding:0;margin:0 0 1.2rem}
+.tags li{font-size:.95rem;padding:.15rem .8rem;border:1px solid var(--olive);border-radius:999px;color:var(--olive-dark);background:var(--olive-soft)}
+.note{font-size:.95rem;color:var(--muted)}
+
+/* Timeline */
+.timeline{list-style:none;margin:0;padding:0 0 0 1.8rem;border-left:3px solid var(--olive)}
+.timeline li{position:relative;padding:0 0 2rem 1.5rem}
+.timeline li::before{content:"";position:absolute;left:-2.35rem;top:.55rem;width:16px;height:16px;border-radius:50%;background:var(--cream);border:3px solid var(--olive)}
+.timeline li:last-child{padding-bottom:0}
+.timeline .role{font-size:.98rem;font-weight:bold;color:var(--olive)}
+.timeline p{margin:0;max-width:70ch}
+
+/* Contact */
+.contact{display:grid;grid-template-columns:.8fr 1.2fr;gap:3rem}
+.contact ul{list-style:none;padding:0;margin:1.2rem 0 0}
+.contact li{margin-bottom:.5rem}
+form{background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);padding:2rem}
+.field{margin-bottom:1.2rem}
+label{display:block;font-weight:bold;margin-bottom:.3rem;color:var(--olive-dark)}
+input,textarea{width:100%;font:inherit;font-size:1.05rem;padding:.7rem .9rem;border:1px solid var(--line);border-radius:var(--radius);background:#fff;color:var(--ink);transition:border-color var(--ease),box-shadow var(--ease)}
+input:focus,textarea:focus{outline:none;border-color:var(--olive);box-shadow:0 0 0 3px var(--olive-soft)}
+textarea{min-height:150px;resize:vertical}
+.error{display:none;color:#8A2B1E;font-size:.98rem;margin-top:.3rem}
+.field.invalid input,.field.invalid textarea{border-color:#8A2B1E}
+.field.invalid .error{display:block}
+#formStatus{margin-top:1rem;padding:.8rem 1rem;border-radius:var(--radius);display:none;font-size:1.02rem}
+#formStatus.ok{display:block;background:var(--olive-soft);border:1px solid var(--olive);color:var(--olive-dark)}
+#formStatus.warn{display:block;background:#FFF6DE;border:1px solid #B08A1E;color:#5C4600}
+
+/* Footer */
+footer{background:var(--olive-dark);color:#EEF0E2;padding:2.5rem 0;text-align:center}
+footer a{color:#fff}
+footer .links{display:flex;justify-content:center;gap:1.5rem;margin:.8rem 0;flex-wrap:wrap}
+footer p{margin:.2rem 0}
+
+/* Reveal */
+.reveal{opacity:0;transform:translateY(18px);transition:opacity .7s ease,transform .7s ease}
+.reveal.show{opacity:1;transform:none}
+
+/* Responsive */
+@media(max-width:900px){
+  .hero .wrap,.about,.project,.contact{grid-template-columns:1fr;gap:2rem}
+  .profile-frame{margin:0 auto;max-width:300px;order:-1}
+  .project:nth-child(even) .project-frame{order:0}
+  .hero{padding-top:7rem;min-height:auto}
+  section{padding:4rem 0}
+}
+@media(max-width:860px){
+  .menu-btn{display:block}
+  .nav ul{position:absolute;top:68px;left:0;right:0;flex-direction:column;gap:0;background:var(--cream);border-bottom:1px solid var(--line);max-height:0;overflow:hidden;opacity:0;transition:max-height .4s ease,opacity .3s ease}
+  .nav ul.open{max-height:480px;opacity:1}
+  .nav ul a{display:block;padding:.9rem 1.5rem;border:0;border-left:3px solid transparent}
+  .nav ul a:hover,.nav ul a.active{border-left-color:var(--olive);background:var(--olive-soft)}
+}
+@media(max-width:480px){body{font-size:1.05rem}.wrap{padding:0 1.1rem}form{padding:1.2rem}.btn{width:100%;text-align:center}}
+@media(prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation:none!important;transition:none!important}
+  .reveal{opacity:1;transform:none}
+}
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap">
+    <a href="#home" class="logo" aria-label="Safina Yaqoob, home">Safina Yaqoob</a>
+    <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="navList" aria-label="Toggle navigation menu"><span></span></button>
+    <nav aria-label="Main navigation">
+      <ul id="navList">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#education">Education</a></li>
+        <li><a href="#experience">Experience</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main>
+<!-- HOME -->
+<section class="hero" id="home">
+  <div class="wrap">
+    <div>
+      <h1>Safina Yaqoob</h1>
+      <p class="headline">Front-End Web Developer | Cybersecurity Enthusiast | ADE Student</p>
+      <p class="typing" aria-live="off">Currently exploring: <b id="typed"></b><span class="cursor" aria-hidden="true"></span></p>
+      <p class="intro">I build clean, responsive websites and enjoy turning ideas into working interfaces. I am growing into cybersecurity and artificial intelligence, and my goal is to become a developer who builds secure, thoughtful digital experiences that help people.</p>
+      <div class="actions">
+        <a class="btn" href="#projects">Explore My Projects</a>
+        <a class="btn ghost" href="#contact">Contact Me</a>
+      </div>
+    </div>
+    <!-- PROFILE PHOTO: save your picture as images/profile.jpg (same folder as index.html). Change the src and alt below if you use another file name. -->
+    <div class="frame profile-frame">
+      <img src="c:\Users\khalid\Downloads\safina.mg.png" alt="Safina Yaqoob" onerror="this.hidden=true">
+      
+      <span class="ph">Profile photo placeholder<br>Add images/profile.jpg</span>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="alt" id="about">
+  <div class="wrap">
+    <div class="section-head reveal"><h2>About Me</h2></div>
+    <div class="about reveal">
+      <blockquote>Continuous learning, personal growth, and meaningful digital experiences.</blockquote>
+      <p>I am Safina Yaqoob, an ADE student at Jinnah University for Women, Karachi, with a passion for Front-End Web Development and a growing interest in Cybersecurity and Artificial Intelligence. Alongside my academic journey, I enjoy building websites, exploring different fields, learning new technologies, and gaining practical experience through internships and research opportunities. I believe in continuous learning, personal growth, and using my skills to create meaningful digital experiences.</p>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="wrap">
+    <div class="section-head reveal"><h2>Skills</h2><p>The tools I use to design, build and secure what I create.</p></div>
+    <div class="skills">
+      <div class="skill reveal"><span class="icon" aria-hidden="true">H5</span><h3>HTML5</h3><p>Semantic, accessible page structure.</p></div>
+      <div class="skill reveal"><span class="icon" aria-hidden="true">C3</span><h3>CSS3</h3><p>Layouts, variables and polished styling.</p></div>
+      <div class="skill reveal"><span class="icon" aria-hidden="true">JS</span><h3>JavaScript</h3><p>Interactive, functional features.</p></div>
+      <div class="skill reveal"><span class="icon" aria-hidden="true">Re</span><h3>React.js</h3><p>Component-based user interfaces.</p></div>
+      <div class="skill reveal"><span class="icon" aria-hidden="true">Nx</span><h3>Next.js</h3><p>Modern React web applications.</p></div>
+      <div class="skill reveal"><span class="icon" aria-hidden="true">WP</span><h3>WordPress</h3><p>Content-managed websites.</p></div>
+      <div class="skill reveal"><span class="icon" aria-hidden="true">RW</span><h3>Responsive Web Design</h3><p>Layouts that fit phones to desktops.</p></div>
+      <div class="skill reveal"><span class="icon" aria-hidden="true">CS</span><h3>Cybersecurity</h3><p>Beginner level, learning every day.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section class="alt" id="projects">
+  <div class="wrap">
+    <div class="section-head reveal"><h2>Projects</h2><p>
+    <!-- EDIT HERE: for each project change the image src, title, description, tags and the two links (href="#"). -->
+
+    <article class="project reveal">
+      <!-- Replace with your screenshot: images/portfolio-project.jpg -->
+      <div class="frame project-frame">
+        <img src="c:\Users\khalid\Downloads\hospital.jpg" alt="Screenshot of the Personal Portfolio Website" onerror="this.hidden=true">
+        <span class="ph">Project screenshot placeholder<br>Add images/portfolio-project.jpg</span>
+      </div>
+      <div>
+        <h3>Apex Care  Website</h3>
+        <p> I designed a modern and responsive hospital website focused on presenting healthcare services, facilities, and essential information through a clean and user-friendly interface. The website features a professional layout, organised content, and responsive design to provide visitors with a smooth browsing experience across different devices.</p>
+        <ul class="tags"><li>HTML5</li><li>CSS3</li><li>JavaScript</li><li>Responsive Web Design</li></ul>
+        <div class="actions">
+          <a class="btn small" href="https://safinayaqoob13-debug.github.io/Apex-Care-International-Hospital-Website-/" target="_blank" rel="nooper >Live Demo</a>
+          <a class="btn small ghost href="#" target="_blank" rel="noopener">GitHub Repository</a>
+        </div>
+      </div>
+    </article>
+
+    <article class="project reveal">
+      <!-- Replace with your screenshot: images/temperature-project.jpg -->
+      <div class="frame project-frame">
+        <img src="c:\Users\khalid\Downloads\school.jpg" alt="School Management Dashboard / Portal" onerror="this.hidden=true">
+        <span class="ph">Project screenshot placeholder<br>Add images/temperature-project.jpg</span>
+      </div>
+      <div>
+        <h3>School Management Dashboard / Portal </h3>
+        <p>I developed a school management dashboard designed to organise school-related information through a structured and easy-to-navigate interface. The portal focuses on presenting academic information and administrative features clearly, with a responsive layout that makes the dashboard convenient to use across different screen sizes </p>
+        <ul class="tags"><li>HTML5</li><li>CSS3</li><li>JavaScript</li><li>Responsive Web Design</li></ul>
+        <div class="actions">
+          <a class="btn small" href="https://safinayaqoob13-debug.github.io/Aetherius-Academy-Portal/" target="_blank" rel="noopener">Live Demo</a>
+          <a class="btn small ghost" href="#" target="_blank" rel="noopener">GitHub Repository</a>
+        </div>
+      </div>
+    </article>
+        </div>
+</section>
+
+<!-- EDUCATION -->
+<section id="education">
+  <div class="wrap">
+    <div class="section-head reveal"><h2>Education</h2></div>
+    <ul class="timeline reveal">
+      <li>
+        <h3>Associate Degree in Education (ADE)</h3>
+        <p class="role">Jinnah University for Women, Karachi</p>
+        <p>Currently pursuing my degree while continuing to build practical skills in web development and cybersecurity.</p>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section class="alt" id="experience">
+  <div class="wrap">
+    <div class="section-head reveal"><h2>Professional Experience</h2></div>
+    <ul class="timeline reveal">
+      <li>
+        <h3>Web Development Intern</h3>
+        <p class="role">Oasis Infobyte</p>
+        <p>Worked on practical front-end development tasks and gained hands-on experience building websites.</p>
+      </li>
+      <li>
+        <h3>Research Intern (Completed)</h3>
+        <p class="role">HEAL Pakistan</p>
+        <p>Completed research-based assignments involving research, writing and advocacy.</p>
+      </li>
+      <li>
+        <h3>School Teacher</h3>
+        <p class="role">Teaching</p>
+        <p>Taught primary-level subjects and selected subjects to higher-grade students.</p>
+      </li>
+      <li>
+        <h3>Home Tutor</h3>
+        <p class="role">Private tutoring</p>
+        <p>Tutored students from Nursery through Intermediate.</p>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="wrap contact">
+    <div class="reveal">
+      <h2>Contact</h2>
+      <p>Have a project, an opportunity or a question? Send me a message and I will get back to you.</p>
+      <ul>
+        <!-- EDIT HERE: replace the # with your real profile URLs -->
+
+        <li><a href="https://www.linkedin.com/in/safina-yaqoob-4abb02376?utm_source=share_via&utm_content=profile&utm_medium=member_android
+" id="https" target="_blank" rel="">LinkedIn</a></li>
+        <li><a href="https://github.com/safinayaqoob13-debug/" id="https" target="_blank" rel="">GitHub</a></li>
+
+      </ul>
+    </div>
+    <form id="contactForm" class="reveal" novalidate>
+      <div class="field">
+        <label for="name">Name</label>
+        <input type="text" id="name" name="name" autocomplete="name" required>
+        <span class="error" id="nameErr">Please enter your name.</span>
+      </div>
+      <div class="field">
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" autocomplete="email" required>
+        <span class="error" id="emailErr">Please enter a valid email address.</span>
+      </div>
+      <div class="field">
+        <label for="message">Message</label>
+        <textarea id="message" name="message" required></textarea>
+        <span class="error" id="msgErr">Please write a message.</span>
+      </div>
+      <button type="submit" class="btn">Send Message</button>
+      <div id="formStatus" role="status" aria-live="polite"></div>
+    </form>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <p><strong>Designed and Developed by Safina Yaqoob.</strong></p>
+    <!-- EDIT HERE: same URLs as in the Contact section -->
+    <p>&copy; <span id="year"></span> Safina Yaqoob. All rights reserved.</p>
+  </div>
+</footer>
+
+<script>
+/* ===== Settings you can edit ===== */
+// CONTACT FORM SERVICE: paste your form endpoint here (for example a Formspree URL like
+// "https://formspree.io/f/yourFormId"). While this is empty, the form validates but does NOT send anything.
+const FORM_ENDPOINT = "";
+
+const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+/* Footer year */
+document.getElementById("year").textContent = new Date().getFullYear();
+
+/* Mobile menu */
+const menuBtn = document.getElementById("menuBtn");
+const navList = document.getElementById("navList");
+function setMenu(open){
+  navList.classList.toggle("open", open);
+  menuBtn.setAttribute("aria-expanded", String(open));
+}
+menuBtn.addEventListener("click", () => setMenu(!navList.classList.contains("open")));
+navList.querySelectorAll("a").forEach(a => a.addEventListener("click", () => setMenu(false)));
+document.addEventListener("keydown", e => { if(e.key === "Escape") setMenu(false); });
+
+/* Active link highlighting */
+const links = [...navList.querySelectorAll("a")];
+const sections = links.map(a => document.querySelector(a.getAttribute("href")));
+function markActive(){
+  const y = window.scrollY + 120;
+  let current = 0;
+  sections.forEach((s, i) => { if(s && s.offsetTop <= y) current = i; });
+  links.forEach((a, i) => a.classList.toggle("active", i === current));
+}
+window.addEventListener("scroll", markActive, {passive:true});
+markActive();
+
+/* Typing effect */
+const phrases = ["Front-End Development", "Cybersecurity", "Continuous Learning"];
+const typed = document.getElementById("typed");
+if(reduceMotion){
+  typed.textContent = phrases.join(" · ");
+}else{
+  let p = 0, c = 0, del = false;
+  (function tick(){
+    const word = phrases[p];
+    typed.textContent = word.slice(0, c);
+    let wait = del ? 40 : 85;
+    if(!del && c === word.length){ del = true; wait = 1400; }
+    else if(del && c === 0){ del = false; p = (p + 1) % phrases.length; wait = 350; }
+    else { c += del ? -1 : 1; }
+    setTimeout(tick, wait);
+  })();
+}
+
+/* Scroll reveal */
+const reveals = document.querySelectorAll(".reveal");
+if("IntersectionObserver" in window && !reduceMotion){
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(en => { if(en.isIntersecting){ en.target.classList.add("show"); io.unobserve(en.target); } });
+  }, {threshold:.12});
+  reveals.forEach(el => io.observe(el));
+}else{
+  reveals.forEach(el => el.classList.add("show"));
+}
+
+/* Keep the LinkedIn and GitHub links in the Contact section and footer in one place */
+// EDIT HERE: put your real URLs between the quotes. Leave "#" until you have them.
+const LINKEDIN_URL = "#";
+const GITHUB_URL = "#";
+document.querySelectorAll('a[href="#"]').forEach(a => {
+  if(a.textContent.trim() === "LinkedIn") a.href = LINKEDIN_URL;
+  if(a.textContent.trim() === "GitHub") a.href = GITHUB_URL;
+});
+
+/* Contact form */
+const form = document.getElementById("contactForm");
+const status = document.getElementById("formStatus");
+const fields = {
+  name:    {el: document.getElementById("name"),    test: v => v.trim().length > 0},
+  email:   {el: document.getElementById("email"),   test: v => /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v.trim())},
+  message: {el: document.getElementById("message"), test: v => v.trim().length > 0}
+};
+function check(key){
+  const f = fields[key];
+  const ok = f.test(f.el.value);
+  f.el.closest(".field").classList.toggle("invalid", !ok);
+  f.el.setAttribute("aria-invalid", String(!ok));
+  return ok;
+}
+Object.keys(fields).forEach(k => fields[k].el.addEventListener("blur", () => check(k)));
+
+form.addEventListener("submit", async e => {
+  e.preventDefault();
+  status.className = ""; status.textContent = "";
+  const results = Object.keys(fields).map(check);
+  if(results.includes(false)){
+    const first = Object.keys(fields).find(k => !fields[k].test(fields[k].el.value));
+    fields[first].el.focus();
+    return;
+  }
+  // BACKEND REQUIRED: connect a form service here before publishing.
+  if(!FORM_ENDPOINT){
+    status.className = "warn";
+    status.textContent = "Your details look good, but this form is not connected to a service yet, so nothing was sent. Please contact me through LinkedIn or GitHub for now.";
+    return;
+  }
+  try{
+    const res = await fetch(FORM_ENDPOINT, {
+      method:"POST",
+      headers:{"Content-Type":"application/json","Accept":"application/json"},
+      body: JSON.stringify({
+        name: fields.name.el.value.trim(),
+        email: fields.email.el.value.trim(),
+        message: fields.message.el.value.trim()
+      })
+    });
+    if(!res.ok) throw new Error("Request failed");
+    status.className = "ok";
+    status.textContent = "Thank you. Your message has been sent.";
+    form.reset();
+  }catch(err){
+    status.className = "warn";
+    status.textContent = "Your message could not be sent. Please check your connection and try again.";
+  }
+});
+</script>
+</body>
+</html>
